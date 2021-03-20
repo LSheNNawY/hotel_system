@@ -17,8 +17,21 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            // for managers and users
+            $table->string("national_id")->nullable()->unique();
+            $table->string("avatar")->nullable();
+            // users
+            $table->string("mobile")->nullable()->unique();
+            $table->string("country")->nullable();
+            $table->enum("gender", ["male", "female"])->nullable();
+            $table->integer("role")->default(4);
+            $table->boolean("approved")->default(false);
+            $table->unsignedBigInteger("approved_by")->unsigned()->nullable();
+
+            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });
