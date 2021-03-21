@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             UserSeeder::class,
-            RolesSeeder::class
+            RolesSeeder::class,
+            FloorsSeeder::class,
+            RoomsSeeder::class
         ]);
     }
 }

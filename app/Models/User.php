@@ -30,7 +30,6 @@ class User extends Authenticatable
         'mobile',
         'country',
         'gender',
-        'role',
         'approved',
         'approved_by',
     ];
