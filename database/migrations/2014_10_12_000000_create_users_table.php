@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->string("mobile")->nullable()->unique();
             $table->string("country")->nullable();
             $table->enum("gender", ["male", "female"])->nullable();
-            $table->integer("role")->default(4);
             $table->boolean("approved")->default(false);
             $table->unsignedBigInteger("approved_by")->unsigned()->nullable();
 
