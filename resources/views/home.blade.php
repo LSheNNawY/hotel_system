@@ -2,10 +2,17 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 text-center mt-5">
-            <i class="fa fa-5x fa-home text-primary"></i>
-        </div>
-    </div>
+    <section class="content-header">
+        <h1> Home </h1>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">
+                    <i class="fa fa-home"></i> Home
+                </li>
+            </ol>
+        </nav>
+
+    </section>
 </div>
 @endsection
