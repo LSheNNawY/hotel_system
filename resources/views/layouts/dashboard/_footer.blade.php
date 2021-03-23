@@ -17,6 +17,7 @@
 <script src="{{ asset("adminLTE") }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset("adminLTE") }}/dist/js/adminlte.min.js"></script>
+<script src="{{ asset("adminLTE") }}/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 @yield('scriptLinks')
 @stack('scripts')

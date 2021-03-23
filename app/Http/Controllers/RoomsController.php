@@ -81,8 +81,13 @@ class RoomsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Room $room)
     {
+        if (\request()->ajax()) {
+            if ($room->delete()) {
+                return \response('success');
+            }
+        }
 
     }
 }
