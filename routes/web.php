@@ -22,7 +22,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::prefix('/admin/')
     ->name('admin.')
-    ->middleware(['role:admin'])
+    ->middleware(['role:admin|manager'])
     ->group(function () {
 
         Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
