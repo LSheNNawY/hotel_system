@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\ReceptionistsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,13 @@ Route::prefix('/admin/')
     ->group(function () {
         
         Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
+        Route::get('receptionists', [ReceptionistsController::class, 'index'])->name('receptionists');
+        Route::get('receptionists/create', [ReceptionistsController::class, 'create'])->name('receptionists.create');
+        // Route::get('receptionists/{receptionist}', [ReceptionistsController::class, 'destroy'])->name('receptionists.delete');
+
 });
+
+
+// Route::get('/receptionists/create', [ReceptionistsController::class, 'create'])->name('receptionists.create');
+
+

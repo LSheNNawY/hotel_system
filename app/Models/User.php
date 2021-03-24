@@ -52,4 +52,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function receptionists()
+    {
+        return $this->hasMany(User::class,'approved_by');
+    }
+
+   
 }

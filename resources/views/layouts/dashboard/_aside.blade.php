@@ -62,6 +62,12 @@
                         <p>Rooms</p>
                     </a>
                 </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.receptionists') }}" class="nav-link">
+                        <p>Receptionists</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
