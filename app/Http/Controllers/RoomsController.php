@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\RoomsDatatable;
-use App\Http\Requests\StoreRoomRequest;
 use App\Models\Floor;
 use App\Models\Room;
 use Illuminate\Http\Request;
@@ -76,7 +75,7 @@ class RoomsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -87,7 +86,11 @@ class RoomsController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (\request()->ajax()) {
+            $room = Room::find($id);
+            if ($room)
+                return \response()->json($room);
+        }
     }
 
     /**
@@ -95,11 +98,37 @@ class RoomsController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        // validation
+        $rules = [
+            'price' => 'required|numeric',
+            'capacity' => 'required|min:1|max:6',
+            'floor' => 'required|numeric',
+            'available' => 'required|numeric'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return \response()->json([
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+            ], 400);
+        }
+
+        $room = Room::find($id);
+
+        $room->update([
+            'capacity'  => $request->capacity,
+            'price'     => $request->price,
+            'floor_id'  => $request->floor,
+            'available' => $request->available
+        ]);
+
+        return \response()->json(array('success' => true), 200);
     }
 
     /**

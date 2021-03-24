@@ -24,8 +24,6 @@ Route::prefix('/admin/')
     ->name('admin.')
     ->middleware(['role:admin|manager'])
     ->group(function () {
-
-        Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
-        Route::post('rooms', [RoomsController::class, 'store'])->name('rooms.create');
-        Route::delete('rooms/{room}', [RoomsController::class, 'destroy'])->name('rooms.delete');
+        // rooms crud
+        Route::resource('rooms', RoomsController::class);
 });
