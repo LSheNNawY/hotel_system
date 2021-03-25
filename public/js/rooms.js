@@ -42,7 +42,7 @@ $(function () {
     })
 
     // show add new room modal
-    $(document).on('click', '#newRoomBtn', function () {
+    $(document).on('click', '.newRoomBtn', function () {
         $('#newRoomModal').modal('show');
     })
 

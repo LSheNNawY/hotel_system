@@ -6,6 +6,10 @@
     <link rel="stylesheet" type="text/css"
           href="{{ url('adminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 
+    <link rel="stylesheet" type="text/css"
+          href="{{ url('adminLTE\plugins\datatables-buttons\css\buttons.bootstrap4.min.css') }}">
+
+
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 @endsection
 
@@ -160,16 +164,15 @@
 
 
         <div class="row datatableRow">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">{{ $title }}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <button class="btn btn-primary" id="newRoomBtn"><i class="fa fa-plus"></i> New Room</button>
                         {!! $dataTable->table([
-                            'class' => 'datatable table table-bordered table-hover',
+                            'class' => 'datatable table table-bordered table-hover w-100',
                             ])
                         !!}
                     </div>
@@ -189,9 +192,11 @@
     <script src="{{ url('adminLTE\plugins\datatables\jquery.dataTables.min.js') }}"></script>
     {{-- datatables bootstrap --}}
     <script src="{{ url('adminLTE\plugins\datatables-bs4\js\dataTables.bootstrap4.min.js') }}"></script>
-
     <script src="{{ url('adminLTE\plugins\datatables-responsive\js\dataTables.responsive.min.js') }}"></script>
     <script src="{{ url('adminLTE\plugins\datatables-responsive\js\responsive.bootstrap4.min.js') }}"></script>
+
+    <script src="{{ url('adminLTE\plugins\datatables-buttons\js\dataTables.buttons.min.js') }}"></script>
+    <script src="{{ url('') }}/vendor/datatables/buttons.server-side.js"></script>
 
     <script src="{{ url('js/rooms.js') }}"></script>
 @endsection
