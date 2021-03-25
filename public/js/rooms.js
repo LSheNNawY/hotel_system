@@ -5,8 +5,6 @@ $(function () {
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
         }
     });
-<<<<<<< HEAD
-=======
 
     $(document).on('click', '.deleteRoomBtn', function (e) {
         const url = $(this).data('url');
@@ -192,13 +190,11 @@ $(function () {
 
     })
 
->>>>>>> 93ef51f7f1a37b8099b5933a313fed3c5317a5a4
 
     $(document).on('click', '.deleteRoomBtn', function (e) {
         const url = $(this).data('url');
         const datatableId = $(this).data('datatable');
 
-<<<<<<< HEAD
         Swal.fire({
             title: 'Are you sure?',
             icon: 'warning',
@@ -298,5 +294,3 @@ $(function () {
     })
 
 });
-=======
->>>>>>> 93ef51f7f1a37b8099b5933a313fed3c5317a5a4

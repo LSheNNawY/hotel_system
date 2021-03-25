@@ -53,7 +53,7 @@
                             </ul>
                         <!-- /.box-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.floors.create') }}" data-datatable="#floorsDatatable" id="newFloorForm"
+                            <form action="{{ route('admin.floors.store') }}" data-datatable="#floorsDatatable" id="newFloorForm"
                                   style="padding: 5px 10px 30px">
                                 <div class="box-body">
 
@@ -75,6 +75,49 @@
                 </div>
             </div>
         </div>
+
+        <!--    -->
+
+    <!-- Edit floor Modal -->
+    <div class="modal fade" id="editFloorModal" data-datatable="#floorsDatatable" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border-radius: 4px">
+                    <div class="modal-body" style="padding:0">
+                        <div class="box box-info">
+                            <div class="box-header with-border">
+                                <h3 class="box-title text-center mb-3">Edit Floor.</h3>
+                            </div>
+
+                            <ul class="error_msgs_alert" id="edit_error_msgs_alert">
+
+                            </ul>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <form action="" data-datatable="#floorsDatatable" id="editFloorForm"
+                                  style="padding: 5px 10px 30px">
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="editName" name="name"
+                                               placeholder="Name" min="1" max="30" required>
+                                    </div> <!-- end of name-->
+
+                                </div>
+                                <!-- /.box-body -->
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-warning" id="confirmEdit">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--    -->
 
         <div class="row datatableRow">
             <div class="col-md-12">
@@ -116,3 +159,5 @@
 @push('scripts')>
 {!! $dataTable->scripts() !!}
 @endpush
+
+

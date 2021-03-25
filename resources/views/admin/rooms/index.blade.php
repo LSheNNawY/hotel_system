@@ -167,11 +167,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-<<<<<<< HEAD
-                    <button class="btn btn-primary" id="newRoomBtn"><i class="fa fa-plus"></i> New Floor</button>
-=======
                         <button class="btn btn-primary" id="newRoomBtn"><i class="fa fa-plus"></i> New Room</button>
->>>>>>> 93ef51f7f1a37b8099b5933a313fed3c5317a5a4
                         {!! $dataTable->table([
                             'class' => 'datatable table table-bordered table-hover',
                             ])

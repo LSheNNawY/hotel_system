@@ -80,7 +80,11 @@ class FloorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (\request()->ajax()) {
+            $floor = Floor::find($id);
+            if ($floor)
+                return \response()->json($floor);
+        }
     }
 
     /**
@@ -92,10 +96,28 @@ class FloorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $floor=Floor::find($id);
-        // $floor->name=$request->name;
-        // $floor->save();   
-        // return redirect()->route('floors.admin.index'); 
+        // validation
+        $rules = [
+            'name' => 'required|string|min:1|max:30'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return \response()->json([
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+            ], 400);
+        }
+
+        $floor = Floor::find($id);
+
+        $floor->update([
+           
+            'name'  => $request->name
+        ]);
+
+        return \response()->json(array('success' => true), 200);
     }
 
     /**

@@ -25,20 +25,17 @@ Route::prefix('/admin/')
     ->name('admin.')
     ->middleware(['role:admin|manager'])
     ->group(function () {
-<<<<<<< HEAD
 
-        Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
-        Route::post('rooms', [RoomsController::class, 'store'])->name('rooms.create');
-        Route::delete('rooms/{room}', [RoomsController::class, 'destroy'])->name('rooms.delete');
+          // rooms crud
+       Route::resource('rooms', RoomsController::class);
 
-        Route::get('floors', [FloorsController::class, 'index'])->name('floors');
+       Route::resource('floors', FloorsController::class);
+
+
+      /*  Route::get('floors', [FloorsController::class, 'index'])->name('floors');
         Route::post('floors', [FloorsController::class, 'store'])->name('floors.create');
         Route::delete('floors/{floor}', [FloorsController::class, 'destroy'])->name('floors.delete');
-        // Route::put('floors/{floor}', [FloorsController::class,'update'])->name('floors.update');
-
+        Route::put('floors/{floor}', [FloorsController::class,'update'])->name('floors.update');
+*/
 });
-=======
-        // rooms crud
-        Route::resource('rooms', RoomsController::class);
-});
->>>>>>> 93ef51f7f1a37b8099b5933a313fed3c5317a5a4
+   
