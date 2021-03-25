@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,8 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset("adminLTE") }}/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{ asset("adminLTE") }}/plugins/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="{{ asset("adminLTE") }}/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
     @yield('styleLinks')
 

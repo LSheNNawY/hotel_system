@@ -6,7 +6,7 @@ $(function () {
         }
     });
 
-    $(document).on('click', '.deleteRoomBtn', function (e) {
+    $(document).on('click', '.deleteFloorBtn', function (e) {
         const url = $(this).data('url');
         const datatableId = $(this).data('datatable');
 
@@ -25,48 +25,52 @@ $(function () {
                     url: url,
                     method: 'DELETE',
                 }).then(function (data) {
+                    console.log(data);
                     Swal.fire({
-                        text: "Room Deleted successfully!",
+                        text: "Floor Deleted successfully!",
                         confirmButtonColor: '#28a745',
                     })
                     $(datatableId).DataTable().ajax.reload();
                 }).catch(function () {
                     Swal.fire({
-                        text: "Error deleting room",
+                        text: "Sorry, this floor is not empty",
                         confirmButtonColor: '#dd3333',
                     })
                 })
 
             }
         })
-    })
+    })//end delete
 
-    // show add new room modal
-    $(document).on('click', '#newRoomBtn', function () {
-        $('#newRoomModal').modal('show');
+    //start update
+
+
+    //end update
+
+    // show add new floor modal
+    $(document).on('click', '#newFloorBtn', function () {
+        $('#newFloorModal').modal('show');
     })
 
     // create new modal ajax request
     $(document).on('click', '#confirmCreation', function (e) {
-        const form = $("#newRoomForm");
-        const url = form.attr('url');
+        const form = $("#newFloorForm");
+        const url = form.attr('action');
         const datatable = form.data('datatable');
-        const capacity = $('#capacity').val(),
-            price = $('#price').val(),
-            floor = $('#floor').val();
+        const name = $('#name').val();
 
-        const data = {capacity, price, floor}
+        // const data = {name}
 
         let ErrorMsgAlert = $("#new_error_msgs_alert");
 
         $.ajax({
             url: url,
             method: "POST",
-            data: data,
+            data: {name},
             statusCode: {
                 500: function () {
                     Swal.fire({
-                        title: 'Error adding room, please try again later',
+                        title: 'Error adding floor, please try again later',
                         icon: 'error',
                         showCancelButton: true,
                         cancelButtonColor: '#dd3333',
@@ -76,12 +80,12 @@ $(function () {
                 200: function () {
                     ErrorMsgAlert.html('');
                     form[0].reset();
-                    $('#newRoomModal').modal('hide')
+                    $('#newFloorModal').modal('hide')
 
                     setTimeout(function () {
                         Swal.fire({
                             icon: "success",
-                            text: "Room created successfully",
+                            text: "Floor created successfully",
                             confirmButtonColor: '#28a745',
                         })
                     }, 500, function () {

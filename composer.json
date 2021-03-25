@@ -17,6 +17,7 @@
         "laravel/ui": "^3.2",
         "spatie/laravel-permission": "^4.0",
         "yajra/laravel-datatables": "^1.5",
+        "yajra/laravel-datatables-fractal": "^1.6",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
