@@ -34,4 +34,8 @@
             @endforeach
         </table>
     </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 93ef51f7f1a37b8099b5933a313fed3c5317a5a4

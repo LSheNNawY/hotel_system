@@ -25,6 +25,7 @@ Route::prefix('/admin/')
     ->name('admin.')
     ->middleware(['role:admin|manager'])
     ->group(function () {
+<<<<<<< HEAD
 
         Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
         Route::post('rooms', [RoomsController::class, 'store'])->name('rooms.create');
@@ -36,3 +37,8 @@ Route::prefix('/admin/')
         // Route::put('floors/{floor}', [FloorsController::class,'update'])->name('floors.update');
 
 });
+=======
+        // rooms crud
+        Route::resource('rooms', RoomsController::class);
+});
+>>>>>>> 93ef51f7f1a37b8099b5933a313fed3c5317a5a4

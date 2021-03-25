@@ -21,14 +21,6 @@
             text-align: center;
         }
 
-
-        /*.newRoom {*/
-        /*    float: right*/
-        /*}*/
-
-        /*.newRoom .fa {*/
-        /*    margin-right: 4px*/
-        /*}*/
     </style>
     <!-- Main content -->
     <section class="content">
@@ -47,7 +39,7 @@
             </nav>
 
         </section>
-        <!-- New admin Modal -->
+        <!-- New room Modal -->
         <div class="modal fade" id="newRoomModal" data-datatable="#roomsDatatable" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -55,36 +47,39 @@
                     <div class="modal-body" style="padding:0">
                         <div class="box box-info">
                             <div class="box-header with-border">
-                                <h3 class="box-title">New Room.</h3>
+                                <h3 class="box-title text-center mb-3">New Room.</h3>
                             </div>
 
-                        {{--                            <ul class="error_msgs_alert" id="new_error_msgs_alert">--}}
+                            <ul class="error_msgs_alert" id="new_error_msgs_alert">
 
-                        {{--                            </ul>--}}
+                            </ul>
                         <!-- /.box-header -->
                             <!-- form start -->
-                            <form role="form" action="#" id="newRoomForm"
+                            <form action="{{ route('admin.rooms.store') }}" data-datatable="#roomsDatatable" id="newRoomForm"
                                   style="padding: 5px 10px 30px">
                                 <div class="box-body">
 
                                     <div class="form-group">
                                         <label for="capacity">Capacity</label>
-                                        <input type="number" class="form-control" id="capacity"
+                                        <input type="number" class="form-control" id="capacity" name="capacity"
                                                placeholder="Capacity" min="1" max="6" required>
                                     </div> <!-- end of capacity-->
 
                                     <div class="form-group">
                                         <label for="price">Price</label>
-                                        <input type="number" class="form-control" id="price"
-                                               placeholder="Capacity" min="500" required>
+                                        <input type="number" class="form-control" id="price" name="price"
+                                               placeholder="Price" min="500" required>
                                     </div> <!-- end of price-->
 
                                     <div class="form-group">
-                                        <label for="floor">Floor</label>
-                                        <select name="floor" id="floor">
-                                            <option value="">#</option>
+                                        <label for="floor">Floor Number</label>
+                                        <select name="floor" id="floor" class="form-control" name="floor">
+                                            <option value="">Floor number</option>
+                                            @foreach($floors as $floor)
+                                                <option value="{{ $floor->id }}">{{ $floor->id }}</option>
+                                            @endforeach
                                         </select>
-                                    </div> <!-- end of floor-->
+                                    </div> <!-- end of floors-->
                                 </div>
                                 <!-- /.box-body -->
                             </form>
@@ -92,13 +87,77 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="confirmCreation" data-new=""
-                            {{--onclick="save('new')"--}}>Add
-                        </button>
+                        <button type="button" class="btn btn-primary" id="confirmCreation">Add</button>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <!-- Edit room Modal -->
+        <div class="modal fade" id="editRoomModal" data-datatable="#roomsDatatable" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="border-radius: 4px">
+                    <div class="modal-body" style="padding:0">
+                        <div class="box box-info">
+                            <div class="box-header with-border">
+                                <h3 class="box-title text-center mb-3">Edit Room.</h3>
+                            </div>
+
+                            <ul class="error_msgs_alert" id="edit_error_msgs_alert">
+
+                            </ul>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <form action="" data-datatable="#roomsDatatable" id="editRoomForm"
+                                  style="padding: 5px 10px 30px">
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <label for="capacity">Capacity</label>
+                                        <input type="number" class="form-control" id="editCapacity" name="capacity"
+                                               placeholder="Capacity" min="1" max="6" required>
+                                    </div> <!-- end of capacity-->
+
+                                    <div class="form-group">
+                                        <label for="price">Price</label>
+                                        <input type="number" class="form-control" id="editPrice" name="price"
+                                               placeholder="Price" min="500" required>
+                                    </div> <!-- end of price-->
+
+                                    <div class="form-group">
+                                        <label for="editAvailability">Available</label>
+                                        <select name="available" id="editAvailability" class="form-control">
+                                            <option value=""></option>
+                                            <option value="1">Available</option>
+                                            <option value="0">Reserved</option>
+                                        </select>
+                                    </div> <!-- end of availability-->
+
+                                    <div class="form-group">
+                                        <label for="floor">Floor Number</label>
+                                        <select name="floor" id="editFloor" class="form-control" name="floor">
+                                            <option value="">Floor number</option>
+                                            @foreach($floors as $floor)
+                                                <option value="{{ $floor->id }}">{{ $floor->id }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div> <!-- end of floors-->
+
+                                </div>
+                                <!-- /.box-body -->
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-warning" id="confirmEdit">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="row datatableRow">
             <div class="col-xs-12">
@@ -108,7 +167,11 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
+<<<<<<< HEAD
                     <button class="btn btn-primary" id="newRoomBtn"><i class="fa fa-plus"></i> New Floor</button>
+=======
+                        <button class="btn btn-primary" id="newRoomBtn"><i class="fa fa-plus"></i> New Room</button>
+>>>>>>> 93ef51f7f1a37b8099b5933a313fed3c5317a5a4
                         {!! $dataTable->table([
                             'class' => 'datatable table table-bordered table-hover',
                             ])
