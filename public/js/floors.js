@@ -19,13 +19,11 @@ $(function () {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                console.log("confirmed")
                 // ajax request for delete
                 $.ajax({
                     url: url,
                     method: 'DELETE',
                 }).then(function (data) {
-                    console.log(data);
                     Swal.fire({
                         text: "Floor Deleted successfully!",
                         confirmButtonColor: '#28a745',
@@ -48,7 +46,7 @@ $(function () {
     //end update
 
     // show add new floor modal
-    $(document).on('click', '#newFloorBtn', function () {
+    $(document).on('click', '.newFloorBtn', function () {
         $('#newFloorModal').modal('show');
     })
 
@@ -80,20 +78,15 @@ $(function () {
                 200: function () {
                     ErrorMsgAlert.html('');
                     form[0].reset();
-                    $('#newFloorModal').modal('hide')
-
+                    $('#newFloorModal').modal('hide');
+                    $(datatable).DataTable().ajax.reload();
                     setTimeout(function () {
                         Swal.fire({
                             icon: "success",
                             text: "Floor created successfully",
                             confirmButtonColor: '#28a745',
                         })
-                    }, 500, function () {
-                        $(datatable).DataTable().ajax.reload();
-
-                    })
-
-                    console.log($(datatable));
+                    }, 500)
 
                 },
                 400: function (response) {
@@ -112,8 +105,8 @@ $(function () {
         })
     })
 
-     // show edit floor modal
-     $(document).on('click', '.updateBtn', function (e) {
+    // show edit floor modal
+    $(document).on('click', '.updateBtn', function (e) {
         const editUrl = $(this).data('url');
         const updateUrl = $(this).data('updateurl');
         const datatableId = $(this).data('datatable');
@@ -141,7 +134,7 @@ $(function () {
             url = form.attr('action'),
             datatable = form.data('datatable'),
             name = $('#editName').val(),
-            
+
             data = {name}
 
         let ErrorMsgAlert = $("#edit_error_msgs_alert");

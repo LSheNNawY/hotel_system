@@ -19,7 +19,6 @@ $(function () {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                console.log("confirmed")
                 // ajax request for delete
                 $.ajax({
                     url: url,
@@ -87,11 +86,9 @@ $(function () {
                         })
                     }, 500)
 
-                    console.log($(datatable));
 
                 },
                 400: function (response) {
-                    console.log(response.errors);
                     // check if there are error msgs.
                     if (response.responseJSON.errors != undefined) {
                         error_msgs = '';
@@ -204,7 +201,6 @@ $(function () {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                console.log("confirmed")
                 // ajax request for delete
                 $.ajax({
                     url: url,
@@ -273,8 +269,6 @@ $(function () {
                         $(datatable).DataTable().ajax.reload();
 
                     })
-
-                    console.log($(datatable));
 
                 },
                 400: function (response) {
