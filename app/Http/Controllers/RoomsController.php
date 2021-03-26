@@ -143,11 +143,8 @@ class RoomsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-<<<<<<< HEAD
      * @param int $id
-=======
      * @param Room $room
->>>>>>> cd5ced442fecf761ca8818006af0b62e8618ab8d
      * @return Response
      * @throws Exception
      */

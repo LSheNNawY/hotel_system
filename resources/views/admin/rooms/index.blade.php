@@ -62,9 +62,6 @@
                             </ul>
                         <!-- /.box-header -->
                             <!-- form start -->
-<<<<<<< HEAD
-                            <form action="{{ route('admin.rooms.create') }}" data-datatable="#roomsDatatable" id="newRoomForm"
-=======
                             <form action="{{ route('admin.rooms.store') }}" data-datatable="#roomsDatatable" id="newRoomForm"
                                   style="padding: 5px 10px 30px">
                                 <div class="box-body">
@@ -121,35 +118,22 @@
                             <!-- /.box-header -->
                             <!-- form start -->
                             <form action="" data-datatable="#roomsDatatable" id="editRoomForm"
->>>>>>> cd5ced442fecf761ca8818006af0b62e8618ab8d
                                   style="padding: 5px 10px 30px">
                                 <div class="box-body">
 
                                     <div class="form-group">
                                         <label for="capacity">Capacity</label>
-<<<<<<< HEAD
-                                        <input type="number" class="form-control" id="capacity" name="capacity"
-=======
                                         <input type="number" class="form-control" id="editCapacity" name="capacity"
->>>>>>> cd5ced442fecf761ca8818006af0b62e8618ab8d
                                                placeholder="Capacity" min="1" max="6" required>
                                     </div> <!-- end of capacity-->
 
                                     <div class="form-group">
                                         <label for="price">Price</label>
-<<<<<<< HEAD
-                                        <input type="number" class="form-control" id="price" name="price"
-=======
                                         <input type="number" class="form-control" id="editPrice" name="price"
->>>>>>> cd5ced442fecf761ca8818006af0b62e8618ab8d
                                                placeholder="Price" min="500" required>
                                     </div> <!-- end of price-->
 
                                     <div class="form-group">
-<<<<<<< HEAD
-                                        <label for="floor">Floor Number</label>
-                                        <select name="floor" id="floor" class="form-control" name="floor">
-=======
                                         <label for="editAvailability">Available</label>
                                         <select name="available" id="editAvailability" class="form-control">
                                             <option value=""></option>
@@ -161,17 +145,12 @@
                                     <div class="form-group">
                                         <label for="floor">Floor Number</label>
                                         <select name="floor" id="editFloor" class="form-control" name="floor">
->>>>>>> cd5ced442fecf761ca8818006af0b62e8618ab8d
                                             <option value="">Floor number</option>
                                             @foreach($floors as $floor)
                                                 <option value="{{ $floor->id }}">{{ $floor->id }}</option>
                                             @endforeach
                                         </select>
                                     </div> <!-- end of floors-->
-<<<<<<< HEAD
-=======
-
->>>>>>> cd5ced442fecf761ca8818006af0b62e8618ab8d
                                 </div>
                                 <!-- /.box-body -->
                             </form>
@@ -179,11 +158,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-<<<<<<< HEAD
-                        <button type="button" class="btn btn-primary" id="confirmCreation">Add</button>
-=======
                         <button type="button" class="btn btn-warning" id="confirmEdit">Edit</button>
->>>>>>> cd5ced442fecf761ca8818006af0b62e8618ab8d
                     </div>
                 </div>
             </div>
@@ -198,7 +173,6 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <button class="btn btn-primary" id="newRoomBtn"><i class="fa fa-plus"></i> New Room</button>
                         {!! $dataTable->table([
                             'class' => 'datatable table table-bordered table-hover w-100',
                             ])
