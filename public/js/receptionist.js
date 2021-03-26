@@ -111,7 +111,7 @@ $(function () {
         method: 'GET',
         
     }).then(function (data) {
-        data.gender=='female'? $('#femalee').attr('checked', 'checked'): $('#femalee').attr('checked', 'checked') 
+        data.gender=='female'? $('#femalee').attr('checked', 'checked'): $('#malee').attr('checked', 'checked') 
         $('#editName').val(data.name)
         $('#editEmail').val(data.email)
         $('#editNational_id').val(data.national_id)

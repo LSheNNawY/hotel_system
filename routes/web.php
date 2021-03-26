@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\ReceptionistsController;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,14 @@ Route::prefix('/admin/')
         Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
         Route::post('rooms', [RoomsController::class, 'store'])->name('rooms.create');
         Route::delete('rooms/{room}', [RoomsController::class, 'destroy'])->name('rooms.delete');
+        // rooms crud
+        Route::resource('rooms', RoomsController::class);
+        // floors crud
+        Route::resource('floors', FloorsController::class);
+        // reservations
+        Route::resource('reservations', ReservationsController::class);
+        // reservations approval ajax
+        Route::put("/ajax/{case}/res/{id}", [ReservationController::class, 'approve']);
 });
 
 

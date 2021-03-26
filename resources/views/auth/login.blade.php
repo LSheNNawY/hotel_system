@@ -28,6 +28,19 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
+            @if(session('message'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>{{ session('message') }}</strong>
+            </div>
+            @endif
+
+            <script>
+                $(".alert").alert();
+            </script>
+
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="input-group mb-3">

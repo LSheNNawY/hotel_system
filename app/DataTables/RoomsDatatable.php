@@ -28,6 +28,9 @@ class RoomsDatatable extends DataTable
                 return $room->available ? '<span class="badge badge-primary">Available</span>'
                     : '<span class="badge badge-warning">Reserved</span>';
             })
+            ->editColumn('price', function ($room) {
+                return '$' . $room->price / 100;
+            })
             ->rawColumns(['actions'])
             ->escapeColumns('available');
     }
@@ -42,6 +45,7 @@ class RoomsDatatable extends DataTable
     {
         return $model->newQuery()
             ->with('manager')
+            ->with('floor')
             ->select('rooms.*');
     }
 
@@ -52,12 +56,24 @@ class RoomsDatatable extends DataTable
      */
     public function html(): Builder
     {
-        return $this->builder()
+        $builder =  $this->builder()
             ->setTableId('roomsDatatable')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
             ->lengthMenu([[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]);
+
+        if (auth()->user()->hasRole('admin|manager')) {
+            $builder->dom('Blfrtip')
+                ->buttons([
+                ['extend' => 'print', 'className' => 'btn btn-sm btn-secondary mr-1', 'text' => '<i class="fa fa-print"></i> Print'],
+                ['extend' => 'excel', 'className' => 'btn btn-sm btn-success mr-1' , 'text' => '<i class="fa fa-file-excel"></i> Excel'],
+                ['extend' => 'reload', 'className' => 'btn btn-sm btn-info mr-1', 'text' => '<i class="fa fa-sync-alt"></i> Reload'],
+                ['text' => '<i class="fa fa-plus"></i> New Room', 'className' => 'btn btn-sm btn-success newRoomBtn'],
+            ]);
+        }
+
+        return $builder;
 
     }
 
@@ -68,7 +84,7 @@ class RoomsDatatable extends DataTable
      */
     protected function getColumns(): array
     {
-        return [
+        $columns =  [
 
             [
                 'name' => 'id',
@@ -91,14 +107,9 @@ class RoomsDatatable extends DataTable
                 'title' => 'Available'
             ],
             [
-                'name' => 'created_by',
-                'data' => 'manager.name',
-                'title' => 'Created By'
-            ],
-            [
                 'name' => 'floor_id',
-                'data' => 'floor_id',
-                'title' => 'Floor Number'
+                'data' => 'floor.name',
+                'title' => 'Floor'
             ],
             [
                 'name' => 'created_at',
@@ -115,6 +126,18 @@ class RoomsDatatable extends DataTable
                 'orderable' => false,
             ],
         ];
+
+        $roomCreator = [
+            'name' => 'created_by',
+            'data' => 'manager.name',
+            'title' => 'Created By'
+        ];
+
+        if (auth()->user()->hasRole('admin')) {
+            array_splice($columns, 5, 0 ,[$roomCreator]);
+        }
+
+        return $columns;
     }
 
     /**

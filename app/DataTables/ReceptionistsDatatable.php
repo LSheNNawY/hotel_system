@@ -43,11 +43,15 @@ class ReceptionistsDatatable extends DataTable
 
         // $users = User::with(['roles' => function($q){
         //     $q->where('name', 'receptionist');
-        // }])->get();
+        // }])->get()
 
         return $model->newQuery()
             ->with('admin')
+            ->with(['roles' => function($q){
+                    $q->where('name', 'receptionist');
+                 }])
             ->select('users.*');
+            
     }
 
     /**
@@ -116,7 +120,8 @@ class ReceptionistsDatatable extends DataTable
             [
                 'name' => 'approved_by',
                 'data' => 'admin.name',
-                'title' => 'Approved By'
+                'title' => 'Approved By',
+                'defaultContent'=>'-'
             ],
             Column::make('Actions'), 
         
