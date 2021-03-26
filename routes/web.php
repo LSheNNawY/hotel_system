@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FloorsController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomsController;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,7 @@ Route::prefix('/admin/')
         // floors crud
         Route::resource('floors', FloorsController::class);
         // reservations
-        Route::resource('reservations', ReservationsController::class);
+        Route::resource('reservations', ReservationController::class);
         // reservations approval ajax
         Route::put("/ajax/{case}/res/{id}", [ReservationController::class, 'approve']);
 });
