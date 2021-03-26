@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\FloorsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,10 @@ Route::prefix('/admin/')
     ->name('admin.')
     ->middleware(['role:admin|manager', 'auth'])
     ->group(function () {
-        // rooms crud
-        Route::resource('rooms', RoomsController::class);
+
+          // rooms crud
+       Route::resource('rooms', RoomsController::class);
+
+       Route::resource('floors', FloorsController::class);
 });
+

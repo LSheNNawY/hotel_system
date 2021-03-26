@@ -20,6 +20,6 @@ class Floor extends Model
 
 
     public function manager() {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

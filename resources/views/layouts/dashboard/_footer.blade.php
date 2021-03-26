@@ -1,3 +1,4 @@
+
 </div>
 
 <div class="wrapper">
@@ -23,4 +24,3 @@
 @stack('scripts')
 </body>
 </html>
-
