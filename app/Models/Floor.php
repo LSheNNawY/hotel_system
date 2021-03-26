@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Floor extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'created_by'
+    ];
+
+    public function rooms() {
+        $this->hasMany(Room::class);
+    }
+
+
+    public function manager() {
+        $this->belongsTo(User::class);
+    }
 }

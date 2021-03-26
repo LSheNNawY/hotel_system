@@ -5,7 +5,7 @@
              alt="Logo"
              class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">Hotel</span>
     </a>
 
     <!-- Sidebar -->
@@ -16,7 +16,7 @@
                 <img src="{{ asset("adminLTE") }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -35,9 +35,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('users.index')}}" class="nav-link">
+                            <a href="{{asset("adminLTE") }}/index1.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Clients</p>
+                                <p>Dashboard v1</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -54,6 +54,23 @@
                         </li>
                     </ul>
                 </li>
+
+                <!-- Rooms links -->
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.rooms') }}" class="nav-link">
+                        <i class="nav-icon fas fa-bed"></i>
+                        <p>Rooms</p>
+                    </a>
+                </li>
+
+                <!-- Clients links -->
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.users.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Clients</p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

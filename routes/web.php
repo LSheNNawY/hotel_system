@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoomsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -19,4 +20,19 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
+// Route::get('/admin/users', [UserController::class, 'index'])->name('users');
+
+// Route::get('/admin/users', [UserController::class, 'index'])->name('users');
+
+Route::prefix('/admin/')
+    ->name('admin.')
+    ->middleware(['role:admin'])
+    ->group(function () {
+        
+        Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
+
+        
+        Route::resource('users', UserController::class);
+
+
+});

@@ -21,7 +21,14 @@ class UserDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'user.action');
+            ->addColumn('Actions', 'admin.users.actions')
+            ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar"); 
+                return '<img src='.$url.' border="0" width="100" class="img-rounded" align="center" />'; })
+            ->editColumn('approved', function ($user) {
+                return $user->approved ? '<span class="badge badge-primary">Approved</span>'
+                    : '<span class="badge badge-danger">Un Approved</span>';
+            })    
+            ->rawColumns(['approved','avatar','Actions']);
     }
 
     /**
@@ -32,7 +39,9 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()
+        ->with('admin')
+        ->select('users.*');
     }
 
     /**
@@ -43,7 +52,7 @@ class UserDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('user-table')
+                    ->setTableId('Datatable')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->orderBy(1);
@@ -57,15 +66,53 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('name'),
-            Column::make('email'),
-            Column::make('national_id'),
-            Column::make('avatar'),
-            Column::make('mobile'),
-            Column::make('country'),
-            Column::make('gender'),
-            Column::make('approved'),
-            Column::make('approved_by'),
+            
+            [
+                'name' => 'name',
+                'data' => 'name',
+                'title' => 'Name'
+            ],
+            [
+                'name' => 'email',
+                'data' => 'email',
+                'title' => 'Email'
+            ],
+            [
+                'name' => 'national_id',
+                'data' => 'national_id',
+                'title' => 'National Id'
+            ],
+            [
+                'name' => 'avatar',
+                'data' => 'avatar',
+                'title' => 'Avatar'
+            ],
+            [
+                'name' => 'mobile',
+                'data' => 'mobile',
+                'title' => 'Mobile'
+            ],
+            [
+                'name' => 'country',
+                'data' => 'country',
+                'title' => 'Country'
+            ],
+            [
+                'name' => 'gender',
+                'data' => 'gender',
+                'title' => 'Gender'
+            ],
+            [
+                'name' => 'approved',
+                'data' => 'approved',
+                'title' => 'Approved'
+            ],
+            [
+                'name' => 'approved_by',
+                'data' => 'admin.name',
+                'title' => 'Approved By'
+            ],
+            Column::make('Actions'), 
         ];
     }
 

@@ -18,7 +18,8 @@
 <!-- AdminLTE App -->
 <script src="{{ asset("adminLTE") }}/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset("adminLTE") }}/dist/js/demo.js"></script>
+@yield('scriptLinks')
+@stack('scripts')
 </body>
 </html>
 
