@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\ManagersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +23,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::prefix('/admin/')
     ->name('admin.')
-    ->middleware(['role:admin'])
+    ->middleware(['role:admin|manager'])
     ->group(function () {
-        
+        Route::resource('managers', ManagersController::class);
         Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
+        Route::post('rooms', [RoomsController::class, 'store'])->name('rooms.create');
+        Route::delete('rooms/{room}', [RoomsController::class, 'destroy'])->name('rooms.delete');
 });

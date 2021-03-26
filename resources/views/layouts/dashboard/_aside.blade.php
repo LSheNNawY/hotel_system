@@ -62,6 +62,12 @@
                         <p>Rooms</p>
                     </a>
                 </li>
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.managers.index') }}" class="nav-link">
+                     <i class="fas fa-user ml-1 mr-1"></i>
+                        <p>Managers</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

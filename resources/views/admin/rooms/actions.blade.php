@@ -2,6 +2,6 @@
     <i class="fa fa-edit"></i>
 </a>
 
-<a class="btn btn-xs btn-danger" title="delete" value="{{ $id }}" data-url="#" onclick="deleteRoom(this)">
+<a class="btn btn-xs btn-danger deleteRoomBtn" title="delete" value="{{ $id }}" data-url="{{ route('admin.rooms.delete', $id) }}" data-datatable="#roomsDatatable">
     <i class="fa fa-user-times"></i>
 </a>
