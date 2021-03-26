@@ -43,10 +43,10 @@ class ManagersDatatable extends DataTable
     {
         return $model->newQuery()
             ->with('admin')
+            ->whereHas('roles', function ($q) {
+                $q->where('id', '2');
+            })
             ->select('users.*');
-        // $users = User::with(['roles' => function($q){
-        //     $q->where('name', 'admin');
-        // }])->get();
     }
 
     /**
@@ -56,12 +56,23 @@ class ManagersDatatable extends DataTable
      */
     public function html()
     {
-        return $this->builder()
+        $builder =  $this->builder()
             ->setTableId('Datatable')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('Bfrtip')
             ->orderBy(1);
+
+        if (auth()->user()->hasRole('admin')) {
+            $builder->dom('Blfrtip')
+                ->buttons([
+                    ['extend' => 'print', 'className' => 'btn btn-sm btn-secondary mr-1', 'text' => '<i class="fa fa-print"></i> Print'],
+                    ['extend' => 'excel', 'className' => 'btn btn-sm btn-success mr-1' , 'text' => '<i class="fa fa-file-excel"></i> Excel'],
+                    ['extend' => 'reload', 'className' => 'btn btn-sm btn-info mr-1', 'text' => '<i class="fa fa-sync-alt"></i> Reload'],
+                    ['text' => '<i class="fa fa-plus"></i> New Manager', 'className' => 'btn btn-sm btn-success newManagerBtn'],
+                ]);
+        }
+
+        return $builder;
     }
 
     /**

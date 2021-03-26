@@ -5,7 +5,7 @@
           href="{{ url('adminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url('adminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-          
+
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 @endsection
@@ -56,7 +56,7 @@
                       </ul>
                   <!-- /.box-header -->
                       <!-- form start -->
-                      <form action="{{ route('admin.users.store') }}" data-datatable="#Datatable" 
+                      <form action="{{ route('admin.users.store') }}" data-datatable="#Datatable"
                             style="padding: 5px 10px 30px" enctype='multipart/form-data' id="newForm" >
                           <div class="box-body">
 
@@ -64,50 +64,50 @@
                                   <label for="name">Name</label>
                                   <input type="text" class="form-control" id="name" name="name"
                                          placeholder="Name"  required>
-                              </div> 
+                              </div>
 
                               <div class="form-group">
                                   <label for="email">Email</label>
                                   <input type="email" class="form-control" id="email" name="email"
                                          placeholder="Email" required>
-                              </div> 
+                              </div>
                               <div class="form-group">
                                   <label for="password">Password</label>
                                   <input type="password" class="form-control" id="password" name="password"
                                          placeholder="Password" required>
-                              </div> 
+                              </div>
                               <div class="form-group">
                                   <label for="national_id">National_ID</label>
                                   <input type="text" class="form-control" id="national_id" name="national_id"
                                          placeholder="National_id" required>
-                              </div> 
+                              </div>
 
                               <div class="form-group">
                                   <label for="avatar">Avatar</label>
                                   <input type="file" class="form-control" id="avatar" name="avatar"
                                          placeholder="Avatar" required>
-                              </div> 
+                              </div>
 
                               <div class="form-group">
                                   <label for="mobile">Mobile</label>
                                   <input type="text" class="form-control" id="mobile" name="mobile"
                                          placeholder="Mobile" required>
-                              </div> 
+                              </div>
 
-                              
+
                               <div class="form-group">
                                   <label for="mobile">Country</label>
                                   <input type="text" class="form-control" id="country" name="country"
                                          placeholder="country" required>
-                              </div> 
+                              </div>
 
                               <div class="form-group">
                                   <label for="gender" class="form-label d-block">Gender</label>
                                   <input type="radio" id="male" name="gender" value="male">
                                   <label for="male">Male</label><br>
                                   <input type="radio" id="female" name="gender" value="female">
-                                  <label for="female">Female</label><br>                                                     
-                              </div>                                   
+                                  <label for="female">Female</label><br>
+                              </div>
                           </div>
                           <!-- /.box-body -->
                       </form>
@@ -121,7 +121,7 @@
       </div>
   </div>
 
-  
+
         <!-- Edit Modal -->
         <div class="modal fade" id="editModal" data-datatable="#Datatable" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
@@ -146,52 +146,52 @@
                                             <label for="name">Name</label>
                                             <input type="text" class="form-control" id="editName" name="name"
                                                 placeholder="Name"  required>
-                                        </div> 
+                                        </div>
 
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             <input type="email" class="form-control" id="editEmail" name="email"
                                                 placeholder="Email" required>
-                                        </div> 
+                                        </div>
 
                                         <div class="form-group">
                                             <label for="password">Password</label>
                                             <input type="password" class="form-control" id="editPassword" name="password"
                                                 placeholder="Password" required>
-                                        </div> 
+                                        </div>
 
                                         <div class="form-group">
                                             <label for="national_id">National_ID</label>
                                             <input type="text" class="form-control" id="editNational_id" name="national_id"
                                                 placeholder="National_id" required>
-                                        </div> 
+                                        </div>
 
                                         <div class="form-group">
                                             <label for="avatar">Avatar</label>
                                             <input type="file" class="form-control-file" id="editAvatar" name="avatar"
                                                 placeholder="Img" required>
-                                        </div> 
+                                        </div>
 
                                         <div class="form-group">
                                             <label for="mobile">Mobile</label>
                                             <input type="text" class="form-control" id="editMobile" name="mobile"
                                                 placeholder="Mobile" required>
-                                        </div> 
+                                        </div>
 
 
                                         <div class="form-group">
                                             <label for="mobile">Country</label>
                                             <input type="text" class="form-control" id="editCountry" name="country"
                                                 placeholder="country" required>
-                                        </div> 
+                                        </div>
 
                                         <div class="form-group">
                                             <label for="gender" class="form-label d-block">Gender</label>
                                             <input type="radio" id="malee" name="gender" value="male">
                                             <label for="malee">Male</label><br>
                                             <input type="radio" id="femalee" name="gender" value="female">
-                                            <label for="femalee">Female</label><br>                                                     
-                                        </div>                                   
+                                            <label for="femalee">Female</label><br>
+                                        </div>
                                         </div>
                         <!-- /.box-body -->
                             </form>
@@ -240,10 +240,10 @@
     <script src="{{ url('adminLTE\plugins\datatables-responsive\js\responsive.bootstrap4.min.js') }}"></script>
 
     <script src="{{ url('js/user.js') }}"></script>
-   
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    
-    
+
+
 @endsection
 
 @push('scripts')>

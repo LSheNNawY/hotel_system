@@ -39,7 +39,7 @@ $(function () {
         })
     })
 
-    $(document).on('click', '#newBtn', function () {
+    $(document).on('click', '.newReceptionistBtn', function () {
         $('#newModal').modal('show');
     })
 
@@ -48,7 +48,7 @@ $(function () {
         const url = form.attr('action');
 
         const datatable = form.data('datatable');
-       
+
         let ErrorMsgAlert = $("#new_error_msgs_alert");
 
         $.ajax({
@@ -74,7 +74,7 @@ $(function () {
                     form[0].reset();
                     $('#newModal').modal('hide')
                     $(datatable).DataTable().ajax.reload();
-                    
+
                     setTimeout(function () {
                         Swal.fire({
                             icon: "success",
@@ -100,18 +100,18 @@ $(function () {
 
    // show edit room modal
  $(document).on('click', '.updateBtn', function (e) {
-   
+
     const editUrl = $(this).data('url'),
           updateUrl = $(this).data('updateurl'),
           datatableId = $(this).data('datatable');
-    
-    
+
+
     $.ajax({
         url: editUrl,
         method: 'GET',
-        
+
     }).then(function (data) {
-        data.gender=='female'? $('#femalee').attr('checked', 'checked'): $('#malee').attr('checked', 'checked') 
+        data.gender=='female'? $('#femalee').attr('checked', 'checked'): $('#malee').attr('checked', 'checked')
         $('#editName').val(data.name)
         $('#editEmail').val(data.email)
         $('#editNational_id').val(data.national_id)

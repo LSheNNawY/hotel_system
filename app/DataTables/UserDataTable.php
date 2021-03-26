@@ -40,8 +40,11 @@ class UserDataTable extends DataTable
     public function query(User $model)
     {
         return $model->newQuery()
-        ->with('admin')
-        ->select('users.*');
+            ->with('admin')
+            ->whereHas('roles', function ($q) {
+                $q->where('id', '4');
+            })
+            ->select('users.*');
     }
 
     /**
@@ -56,6 +59,7 @@ class UserDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->orderBy(1);
+
     }
 
     /**

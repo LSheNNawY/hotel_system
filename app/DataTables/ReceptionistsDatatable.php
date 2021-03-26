@@ -22,13 +22,13 @@ class ReceptionistsDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('Actions', 'admin.receptionists.actions')
-            ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar"); 
+            ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar");
                 return '<img src='.$url.' border="0" width="100" height="100" class="img-rounded" align="center" />'; })
             ->editColumn('approved', function ($user) {
                     return $user->approved ? '<span class="badge badge-primary">Approved</span>'
                         : '<span class="badge badge-danger">Un Approved</span>';
-                })   
-        
+                })
+
             ->rawColumns(['avatar','Actions','approved']);
     }
 
@@ -47,11 +47,10 @@ class ReceptionistsDatatable extends DataTable
 
         return $model->newQuery()
             ->with('admin')
-            ->with(['roles' => function($q){
-                    $q->where('name', 'receptionist');
-                 }])
+            ->whereHas('roles', function ($q) {
+                $q->where('id', '3');
+            })
             ->select('users.*');
-            
     }
 
     /**
@@ -61,12 +60,23 @@ class ReceptionistsDatatable extends DataTable
      */
     public function html()
     {
-        return $this->builder()
+        $builder = $this->builder()
                     ->setTableId('Datatable')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1);                                   
+                    ->orderBy(1);
+
+        if (auth()->user()->hasRole('admin|manager')) {
+            $builder->dom('Blfrtip')
+                ->buttons([
+                    ['extend' => 'print', 'className' => 'btn btn-sm btn-secondary mr-1', 'text' => '<i class="fa fa-print"></i> Print'],
+                    ['extend' => 'excel', 'className' => 'btn btn-sm btn-success mr-1' , 'text' => '<i class="fa fa-file-excel"></i> Excel'],
+                    ['extend' => 'reload', 'className' => 'btn btn-sm btn-info mr-1', 'text' => '<i class="fa fa-sync-alt"></i> Reload'],
+                    ['text' => '<i class="fa fa-plus"></i> New Receptionist', 'className' => 'btn btn-sm btn-success newReceptionistBtn'],
+                ]);
+        }
+
+        return $builder;
     }
 
     /**
@@ -123,8 +133,8 @@ class ReceptionistsDatatable extends DataTable
                 'title' => 'Approved By',
                 'defaultContent'=>'-'
             ],
-            Column::make('Actions'), 
-        
+            Column::make('Actions'),
+
         ];
     }
 

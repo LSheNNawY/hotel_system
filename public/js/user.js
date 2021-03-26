@@ -48,7 +48,7 @@ $(function () {
         const url = form.attr('action');
 
         const datatable = form.data('datatable');
-       
+
         let ErrorMsgAlert = $("#new_error_msgs_alert");
 
         $.ajax({
@@ -100,15 +100,15 @@ $(function () {
 
     // show edit modal
  $(document).on('click', '.updateBtn', function (e) {
-   
+
     const editUrl = $(this).data('url');
     const updateUrl = $(this).data('updateurl');
     const datatableId = $(this).data('datatable');
-    
+
     $.ajax({
         url: editUrl,
         method: 'GET',
-        
+
     }).then(function (data) {
 
         $('#editName').val(data.name)
@@ -120,7 +120,7 @@ $(function () {
         data.gender=='female'? $('#femalee').attr('checked', 'checked'): $('#femalee').attr('checked', 'checked')
         $('#editForm').attr('action', updateUrl)
         $('#editModal').modal('show');
-      
+
 
 
     }).catch(function (error) {
