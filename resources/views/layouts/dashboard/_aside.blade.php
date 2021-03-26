@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ asset("adminLTE") }}index3.html" class="brand-link">
+    <a href="#" class="brand-link">
         <img src="{{ asset("adminLTE") }}/dist/img/AdminLTELogo.png"
              alt="Logo"
              class="brand-image img-circle elevation-3"
@@ -29,13 +29,13 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Dashboard
+                            Manage Clients
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ asset("adminLTE") }}/index.html" class="nav-link">
+                            <a href="{{asset("adminLTE") }}/index1.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dashboard v1</p>
                             </a>
@@ -57,7 +57,7 @@
 
                 <!-- Rooms links -->
                 <li class="nav-item has-treeview">
-                    <a href="{{ route('admin.rooms') }}" class="nav-link">
+                    <a href="{{ route('admin.rooms.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-bed"></i>
                         <p>Rooms</p>
                     </a>
@@ -66,6 +66,25 @@
                     <a href="{{ route('admin.managers.index') }}" class="nav-link">
                      <i class="fas fa-user ml-1 mr-1"></i>
                         <p>Managers</p>
+
+                <!-- Clients links -->
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.users.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Clients</p>
+                    </a>
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.floors.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>Floors</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.reservations.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-key"></i>
+                        <p>Reservations</p>
                     </a>
                 </li>
             </ul>

@@ -2,28 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\RoomsDatatable;
-use App\Http\Requests\StoreRoomRequest;
+use App\DataTables\FloorsDatatable;
 use App\Models\Floor;
-use App\Models\Room;
-use Exception;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
-class RoomsController extends Controller
+class FloorsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param RoomsDatatable $room
+     * @param FloorsDatatable $floor
      * @return Response
      */
-    public function index(RoomsDatatable $room)
+    public function index(FloorsDatatable $floor)
     {
-        $floors = Floor::all();
-        return $room->render('admin.rooms.index', ['title' => 'Rooms', 'floors' => $floors]);
+        return $floor->render('admin.floors.index', ['title' => 'Floors']);
     }
 
     /**
@@ -39,18 +34,14 @@ class RoomsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
-     * @param Request $request
-     * @return JsonResponse
+     * @param  \Illuminate\Http\Request  $request
+     * @return Response
      */
     public function store(Request $request)
     {
         // validation
         $rules = [
-            'price' => 'required|numeric',
-            'capacity' => 'required|min:1|max:6',
-            'floor' => 'required|numeric'
+            'name' => 'required|string|min:3|max:30',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -62,10 +53,8 @@ class RoomsController extends Controller
             ], 400);
         }
 
-        Room::create([
-            'capacity'  => $request->capacity,
-            'price'     => $request->price,
-            'floor_id'  => $request->floor,
+        Floor::create([
+            'name' => $request->name,
             'created_by'=> auth()->user()->id
         ]);
 
@@ -80,7 +69,7 @@ class RoomsController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -88,14 +77,13 @@ class RoomsController extends Controller
      *
      * @param int $id
      * @return Response
-     * @return JsonResponse
      */
     public function edit($id)
     {
         if (\request()->ajax()) {
-            $room = Room::find($id);
-            if ($room)
-                return \response()->json($room);
+            $floor = Floor::find($id);
+            if ($floor)
+                return \response()->json($floor);
         }
     }
 
@@ -105,18 +93,12 @@ class RoomsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param int $id
      * @return Response
-     * @param Request $request
-     * @param int $id
-     * @return JsonResponse
      */
     public function update(Request $request, $id)
     {
         // validation
         $rules = [
-            'price' => 'required|numeric',
-            'capacity' => 'required|min:1|max:6',
-            'floor' => 'required|numeric',
-            'available' => 'required|numeric'
+            'name' => 'required|string|min:1|max:30'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -128,13 +110,11 @@ class RoomsController extends Controller
             ], 400);
         }
 
-        $room = Room::find($id);
+        $floor = Floor::find($id);
 
-        $room->update([
-            'capacity'  => $request->capacity,
-            'price'     => $request->price,
-            'floor_id'  => $request->floor,
-            'available' => $request->available
+        $floor->update([
+           
+            'name'  => $request->name
         ]);
 
         return \response()->json(array('success' => true), 200);
@@ -143,19 +123,16 @@ class RoomsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-<<<<<<< HEAD
      * @param int $id
-=======
-     * @param Room $room
->>>>>>> cd5ced442fecf761ca8818006af0b62e8618ab8d
      * @return Response
-     * @throws Exception
      */
-    public function destroy(Room $room)
+    public function destroy(Floor $floor)
     {
         if (\request()->ajax()) {
-            if ($room->delete()) {
+            if ($floor->delete()) {
                 return \response('success');
+            } else {
+                return \response('Not empty');
             }
         }
 
