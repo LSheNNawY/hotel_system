@@ -61,11 +61,21 @@ class ReservationsDatatable extends DataTable
      */
     public function html(): Builder
     {
-        return $this->builder()
+        $builder = $this->builder()
             ->setTableId('reservationsDatatable')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1);
+        if (auth()->user()->hasRole('admin|manager')) {
+            $builder->dom('Blfrtip')
+                ->buttons([
+                    ['extend' => 'print', 'className' => 'btn btn-sm btn-secondary mr-1', 'text' => '<i class="fa fa-print"></i> Print'],
+                    ['extend' => 'excel', 'className' => 'btn btn-sm btn-success mr-1' , 'text' => '<i class="fa fa-file-excel"></i> Excel'],
+                    ['extend' => 'reload', 'className' => 'btn btn-sm btn-info mr-1', 'text' => '<i class="fa fa-sync-alt"></i> Reload'],
+                ]);
+        }
+
+        return $builder;
     }
 
     /**

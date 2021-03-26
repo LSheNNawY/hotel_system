@@ -23,17 +23,36 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+            
+                
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.managers.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                        <p>Managers</p>
+                        </a>
+                </li>
+
+                <!-- Clients links -->
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.users.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Clients</p>
+                    </a>
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.floors.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>Floors</p>
+                    </a>
+                </li>
                 <!-- Rooms links -->
                 <li class="nav-item has-treeview">
                     <a href="{{ route('admin.rooms.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-bed"></i>
                         <p>Rooms</p>
-                    </a>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="{{ route('admin.floors.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-bed"></i>
-                        <p>Floors</p>
                     </a>
                 </li>
                 <li class="nav-item has-treeview">

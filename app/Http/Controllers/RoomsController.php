@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\RoomsDatatable;
+use App\Http\Requests\StoreRoomRequest;
 use App\Models\Floor;
 use App\Models\Room;
 use Exception;
@@ -38,6 +39,8 @@ class RoomsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      * @param Request $request
      * @return JsonResponse
      */
@@ -84,6 +87,7 @@ class RoomsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
+     * @return Response
      * @return JsonResponse
      */
     public function edit($id)
@@ -98,6 +102,9 @@ class RoomsController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return Response
      * @param Request $request
      * @param int $id
      * @return JsonResponse
@@ -136,6 +143,7 @@ class RoomsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param int $id
      * @param Room $room
      * @return Response
      * @throws Exception

@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\FloorsController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\ReceptionistsController;
+use App\Http\Controllers\ManagersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,21 +24,25 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Route::get('/admin/users', [UserController::class, 'index'])->name('users');
+
+// Route::get('/admin/users', [UserController::class, 'index'])->name('users');
 
 Route::prefix('/admin/')
     ->name('admin.')
     ->middleware(['role:admin|manager'])
     ->group(function () {
+        // receptionist crud    
         Route::resource('receptionists', ReceptionistsController::class);
-        Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
-        Route::post('rooms', [RoomsController::class, 'store'])->name('rooms.create');
-        Route::delete('rooms/{room}', [RoomsController::class, 'destroy'])->name('rooms.delete');
+       // manager crud
+        Route::resource('managers', ManagersController::class);
+        Route::resource('users', UserController::class);
         // rooms crud
         Route::resource('rooms', RoomsController::class);
         // floors crud
         Route::resource('floors', FloorsController::class);
         // reservations
-        Route::resource('reservations', ReservationsController::class);
+        Route::resource('reservations', ReservationController::class);
         // reservations approval ajax
         Route::put("/ajax/{case}/res/{id}", [ReservationController::class, 'approve']);
 });
