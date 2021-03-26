@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FloorsController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +28,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::prefix('/admin/')
     ->name('admin.')
-    ->middleware(['role:admin'])
+    ->middleware(['role:admin|manager'])
     ->group(function () {
         
         Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
@@ -35,4 +37,12 @@ Route::prefix('/admin/')
         Route::resource('users', UserController::class);
 
 
+        // rooms crud
+        Route::resource('rooms', RoomsController::class);
+        // floors crud
+        Route::resource('floors', FloorsController::class);
+        // reservations
+        Route::resource('reservations', ReservationController::class);
+        // reservations approval ajax
+        Route::put("/ajax/{case}/res/{id}", [ReservationController::class, 'approve']);
 });
