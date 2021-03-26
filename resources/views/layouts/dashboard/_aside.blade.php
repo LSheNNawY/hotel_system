@@ -30,6 +30,18 @@
                         <p>Rooms</p>
                     </a>
                 </li>
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.floors.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-bed"></i>
+                        <p>Floors</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('admin.reservations.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-key"></i>
+                        <p>Reservations</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
