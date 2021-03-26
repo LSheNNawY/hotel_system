@@ -19,7 +19,7 @@ class CreateReservationsTable extends Migration
             $table->unsignedBigInteger("client_id");
             $table->integer("accompany_number");
             $table->bigInteger("price_paid");
-            $table->integer("approved_by");
+            $table->integer("approved_by")->nullable();
 
             $table->timestamps();
 
