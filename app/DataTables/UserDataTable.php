@@ -22,12 +22,12 @@ class UserDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('Actions', 'admin.users.actions')
-            ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar"); 
+            ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar");
                 return '<img src='.$url.' border="0" width="100" class="img-rounded" align="center" />'; })
             ->editColumn('approved', function ($user) {
                 return $user->approved ? '<span class="badge badge-primary">Approved</span>'
                     : '<span class="badge badge-danger">Un Approved</span>';
-            })    
+            })
             ->rawColumns(['approved','avatar','Actions']);
     }
 
@@ -66,7 +66,7 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            
+
             [
                 'name' => 'name',
                 'data' => 'name',
@@ -110,9 +110,10 @@ class UserDataTable extends DataTable
             [
                 'name' => 'approved_by',
                 'data' => 'admin.name',
-                'title' => 'Approved By'
+                'title' => 'Approved By',
+                'defaultContent' => '-'
             ],
-            Column::make('Actions'), 
+            Column::make('Actions'),
         ];
     }
 

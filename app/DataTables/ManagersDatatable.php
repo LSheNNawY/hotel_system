@@ -22,15 +22,15 @@ class ManagersDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('Actions', 'admin.Managers.actions')
-            ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar"); 
-                return '<img src='.$url.' border="0" width="100" height="100" class="img-rounded" align="center" />'; })
+            ->addColumn('avatar', function ($user) {
+                $url = asset("storage/images/$user->avatar");
+                return '<img src=' . $url . ' border="0" width="100" height="100" class="img-rounded" align="center" />';
+            })
             ->editColumn('approved', function ($user) {
-                    return $user->approved ? '<span class="badge badge-primary">Approved</span>'
-                        : '<span class="badge badge-danger">Un Approved</span>';
-                })   
-        
-            ->rawColumns(['avatar','Actions','approved']);
-;
+                return $user->approved ? '<span class="badge badge-primary">Approved</span>'
+                    : '<span class="badge badge-danger">Un Approved</span>';
+            })
+            ->rawColumns(['avatar', 'Actions', 'approved']);;
     }
 
     /**
@@ -43,12 +43,10 @@ class ManagersDatatable extends DataTable
     {
         return $model->newQuery()
             ->with('admin')
-            ->select('users.*')
-
-            ;
-            // $users = User::with(['roles' => function($q){
-            //     $q->where('name', 'admin');
-            // }])->get();
+            ->select('users.*');
+        // $users = User::with(['roles' => function($q){
+        //     $q->where('name', 'admin');
+        // }])->get();
     }
 
     /**
@@ -59,11 +57,11 @@ class ManagersDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('Datatable')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1);                                   
+            ->setTableId('Datatable')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('Bfrtip')
+            ->orderBy(1);
     }
 
     /**
@@ -71,7 +69,7 @@ class ManagersDatatable extends DataTable
      *
      * @return array
      */
-   protected function getColumns()
+    protected function getColumns()
     {
         return [
             [
@@ -117,10 +115,11 @@ class ManagersDatatable extends DataTable
             [
                 'name' => 'approved_by',
                 'data' => 'admin.name',
-                'title' => 'Approved By'
+                'title' => 'Approved By',
+                'defaultContent' => '-'
             ],
-            Column::make('Actions'), 
-        
+            Column::make('Actions'),
+
         ];
     }
 
@@ -133,6 +132,6 @@ class ManagersDatatable extends DataTable
     {
         return 'Managers_' . date('YmdHis');
     }
-    
+
 }
 
