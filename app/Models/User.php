@@ -53,10 +53,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function receptionists()
+    public function admin()
     {
-        return $this->hasMany(User::class,'approved_by');
+        return $this->belongsTo(User::class,'approved_by');
     }
 
    
 }
+
+

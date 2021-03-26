@@ -40,7 +40,9 @@ class RoomsDatatable extends DataTable
      */
     public function query(Room $model): \Illuminate\Database\Eloquent\Builder
     {
-        return $model->newQuery()->with('manager')->select('rooms.*');
+        return $model->newQuery()
+            ->with('manager')
+            ->select('rooms.*');
     }
 
     /**
@@ -56,6 +58,7 @@ class RoomsDatatable extends DataTable
             ->minifiedAjax()
             ->orderBy(1)
             ->lengthMenu([[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]);
+
     }
 
     /**

@@ -64,7 +64,7 @@
                 </li>
 
                 <li class="nav-item has-treeview">
-                    <a href="{{ route('admin.receptionists') }}" class="nav-link">
+                    <a href="{{ route('admin.receptionists.index') }}" class="nav-link">
                         <p>Receptionists</p>
                     </a>
                 </li>

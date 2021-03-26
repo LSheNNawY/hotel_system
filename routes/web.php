@@ -23,17 +23,14 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::prefix('/admin/')
     ->name('admin.')
-    ->middleware(['role:admin'])
+    ->middleware(['role:admin|manager'])
     ->group(function () {
-        
+        Route::resource('receptionists', ReceptionistsController::class);
         Route::get('rooms', [RoomsController::class, 'index'])->name('rooms');
-        Route::get('receptionists', [ReceptionistsController::class, 'index'])->name('receptionists');
-        Route::get('receptionists/create', [ReceptionistsController::class, 'create'])->name('receptionists.create');
-        // Route::get('receptionists/{receptionist}', [ReceptionistsController::class, 'destroy'])->name('receptionists.delete');
-
+        Route::post('rooms', [RoomsController::class, 'store'])->name('rooms.create');
+        Route::delete('rooms/{room}', [RoomsController::class, 'destroy'])->name('rooms.delete');
 });
 
 
-// Route::get('/receptionists/create', [ReceptionistsController::class, 'create'])->name('receptionists.create');
 
 

@@ -22,8 +22,14 @@ class ReceptionistsDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('Actions', 'admin.receptionists.actions')
-            ->rawColumns(['Actions']);
-            // ->addColumn('action', 'admin.receptionists.actions')            
+            ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar"); 
+                return '<img src='.$url.' border="0" width="100" height="100" class="img-rounded" align="center" />'; })
+            ->editColumn('approved', function ($user) {
+                    return $user->approved ? '<span class="badge badge-primary">Approved</span>'
+                        : '<span class="badge badge-danger">Un Approved</span>';
+                })   
+        
+            ->rawColumns(['avatar','Actions','approved']);
     }
 
     /**
@@ -34,7 +40,14 @@ class ReceptionistsDatatable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery();
+
+        // $users = User::with(['roles' => function($q){
+        //     $q->where('name', 'receptionist');
+        // }])->get();
+
+        return $model->newQuery()
+            ->with('admin')
+            ->select('users.*');
     }
 
     /**
@@ -45,7 +58,7 @@ class ReceptionistsDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('receptionistsDatatable')
+                    ->setTableId('Datatable')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -60,16 +73,53 @@ class ReceptionistsDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('name'),
-            Column::make('email'),
-            Column::make('national_id'),
-            Column::make('avatar'),
-            Column::make('mobile'),
-            Column::make('country'),
-            Column::make('gender'),
-            Column::make('approved'),
-            Column::make('approved_by'),
-            Column::make('Actions')
+            [
+                'name' => 'name',
+                'data' => 'name',
+                'title' => 'Name'
+            ],
+            [
+                'name' => 'email',
+                'data' => 'email',
+                'title' => 'Email'
+            ],
+            [
+                'name' => 'national_id',
+                'data' => 'national_id',
+                'title' => 'National Id'
+            ],
+            [
+                'name' => 'avatar',
+                'data' => 'avatar',
+                'title' => 'Avatar'
+            ],
+            [
+                'name' => 'mobile',
+                'data' => 'mobile',
+                'title' => 'Mobile'
+            ],
+            [
+                'name' => 'country',
+                'data' => 'country',
+                'title' => 'Country'
+            ],
+            [
+                'name' => 'gender',
+                'data' => 'gender',
+                'title' => 'Gender'
+            ],
+            [
+                'name' => 'approved',
+                'data' => 'approved',
+                'title' => 'Approved'
+            ],
+            [
+                'name' => 'approved_by',
+                'data' => 'admin.name',
+                'title' => 'Approved By'
+            ],
+            Column::make('Actions'), 
+        
         ];
     }
 

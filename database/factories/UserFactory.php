@@ -22,13 +22,15 @@ class UserFactory extends Factory
      * @return array
      */
     public function definition()
-    {
+    {   
         return [
+            
             'name' => "admin",
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'), // password
-            'remember_token' => Str::random(10),
+            'remember_token' => Str::random(10),          
+
         ];
     }
 
