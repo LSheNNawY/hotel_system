@@ -32,7 +32,7 @@
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="{{ route('admin.floors.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-bed"></i>
+                        <i class="nav-icon fas fa-building"></i>
                         <p>Floors</p>
                     </a>
                 </li>

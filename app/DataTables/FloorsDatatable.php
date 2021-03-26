@@ -49,13 +49,22 @@ class FloorsDatatable extends DataTable
      */
     public function html()
     {
-        return $this->builder()
+        $builder = $this->builder()
                     ->setTableId('floorsDatatable')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->orderBy(1)
                     ->lengthMenu([[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]);
-                   
+        if (auth()->user()->hasRole('admin|manager')) {
+            $builder->dom('Blfrtip')
+                ->buttons([
+                    ['extend' => 'print', 'className' => 'btn btn-sm btn-secondary mr-1', 'text' => '<i class="fa fa-print"></i> Print'],
+                    ['extend' => 'excel', 'className' => 'btn btn-sm btn-success mr-1' , 'text' => '<i class="fa fa-file-excel"></i> Excel'],
+                    ['extend' => 'reload', 'className' => 'btn btn-sm btn-info mr-1', 'text' => '<i class="fa fa-sync-alt"></i> Reload'],
+                    ['text' => '<i class="fa fa-plus"></i> New Floor', 'className' => 'btn btn-sm btn-success newFloorBtn'],
+                ]);
+        }
+        return $builder;
     }
 
     /**
@@ -78,7 +87,7 @@ class FloorsDatatable extends DataTable
                 'data' => 'name',
                 'title' => 'Name'
             ],
-            
+
             [
                 'name' => 'created_by',
                 'data' => 'manager.name',
@@ -98,7 +107,7 @@ class FloorsDatatable extends DataTable
                 'searchable' => false,
                 'orderable' => false,
             ],
-           
+
         ];
     }
 

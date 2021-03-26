@@ -5,7 +5,8 @@
           href="{{ url('adminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url('adminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-
+    <link rel="stylesheet" type="text/css"
+          href="{{ url('adminLTE\plugins\datatables-buttons\css\buttons.bootstrap4.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 @endsection
 
@@ -19,6 +20,9 @@
             background-color: #FFFFFF;
             padding: 20px;
             text-align: center;
+        }
+        .dt-buttons {
+            padding: 10px;
         }
 
     </style>
@@ -68,7 +72,8 @@
 
             <script src="{{ url('adminLTE\plugins\datatables-responsive\js\dataTables.responsive.min.js') }}"></script>
             <script src="{{ url('adminLTE\plugins\datatables-responsive\js\responsive.bootstrap4.min.js') }}"></script>
-
+            <script src="{{ url('adminLTE\plugins\datatables-buttons\js\dataTables.buttons.min.js') }}"></script>
+            <script src="{{ url('') }}/vendor/datatables/buttons.server-side.js"></script>
             <script src="{{ url('js/reservations.js') }}"></script>
         @endsection
 

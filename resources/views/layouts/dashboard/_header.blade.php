@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ asset("adminLTE") }}/plugins/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="{{ asset("adminLTE") }}/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
+
+
     @yield('styleLinks')
 
     <!-- Google Font: Source Sans Pro -->

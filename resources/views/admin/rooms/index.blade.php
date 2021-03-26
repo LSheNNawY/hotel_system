@@ -24,6 +24,9 @@
             padding: 20px;
             text-align: center;
         }
+        .dt-buttons {
+            padding: 10px;
+        }
 
     </style>
     <!-- Main content -->
