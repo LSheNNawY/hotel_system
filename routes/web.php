@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,11 +26,4 @@ Route::prefix('/admin/')
     ->group(function () {
         // rooms crud
         Route::resource('rooms', RoomsController::class);
-
-        // Reservation approval ajax
-        Route::put('/ajax/{case}/res/{id}', [ReservationController::class, 'approve'])->name('ajax');
-        // Reservations
-        Route::resource('reservations', ReservationController::class);
-
-
 });
