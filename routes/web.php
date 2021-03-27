@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientReservationController;
 use App\Http\Controllers\FloorsController;
+use App\Http\Controllers\manager\ManagersFloorsController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\ReceptionistsController;
@@ -58,6 +59,20 @@ Route::prefix('/admin/')
         Route::resource('reservations', ReservationController::class);
         // reservations approval ajax
         Route::put("/ajax/{case}/res/{id}", [ReservationController::class, 'approve']);
+
+
+});
+
+Route::prefix('/manager/')
+    ->name('manager.')
+    ->middleware(['role:manager', 'auth'])
+    ->group(function () {
+        // floors crud
+        Route::resource('floors', ManagersFloorsController::class);
+        Route::resource('rooms', ManagersFloorsController::class);
+
+
+      
 });
 
 

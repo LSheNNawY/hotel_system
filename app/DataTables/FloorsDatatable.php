@@ -3,7 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\Floor;
-use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\DataTableAbstract;
