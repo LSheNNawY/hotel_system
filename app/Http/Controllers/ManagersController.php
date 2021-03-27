@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Http\Response;
 use App\DataTables\ManagersDatatable;
-use Illuminate\Database\Capsule\Manager;
 use Illuminate\Support\Facades\Validator;
 
 

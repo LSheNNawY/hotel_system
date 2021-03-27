@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Log in</title>
+    <title>Hotel Management System - Register</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -20,7 +22,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>Admin</b>LTE</a>
+        <a href="#"><b>H</b> M S</a>
     </div>
     <!-- /.register-logo -->
     <div class="card">
@@ -34,7 +36,7 @@
                            name="name" value="{{ old('name') }}" placeholder="Username" required autocomplete="name" autofocus>
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                            <span class="fas fa-user"></span>
                         </div>
                     </div>
                     @error('name')
@@ -52,6 +54,33 @@
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="input-group mb-3">
+
+                    <select name="country" id="country" class="form-control">
+                        <option value="" class="text-muted">Select a country</option>
+                        @foreach($countries as $country)
+                            <option value="{{ $country['name'] }}">{{$country['name']}}</option>
+                        @endforeach
+                    </select>
+                        <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-globe"></span>
+                                                </div>
+                                            </div>
+{{--                    <input id="country" type="text" class="form-control @error('country') is-invalid @enderror"--}}
+{{--                           name="country" value="{{ old('country') }}" placeholder="Country" required autocomplete="email" autofocus>--}}
+{{--                    <div class="input-group-append">--}}
+{{--                        <div class="input-group-text">--}}
+{{--                            <span class="fas fa-envelope"></span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -96,17 +125,7 @@
                     </div>
                 </div>
             </form>
-            <div class="social-auth-links text-center">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i>
-                    Sign up using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i>
-                    Sign up using Google+
-                </a>
-            </div>
+
             <a href="{{route("login")}}" class="text-center">I already have a membership</a>
         </div>
         <!-- /.login-card-body -->

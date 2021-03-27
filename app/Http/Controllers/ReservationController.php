@@ -10,8 +10,7 @@ class ReservationController extends Controller
 {
     public function index(ReservationsDatatable $reservationsDatatable)
     {
-        $reservations = Reservation::all();
-        return $reservationsDatatable->render('admin.reservations.index', ['title' => 'Reservations', 'reservations' => $reservations]);
+        return $reservationsDatatable->render('admin.reservations.index', ['title' => 'Reservations']);
     }
 
     public function approve(Request $request, $case, $id)

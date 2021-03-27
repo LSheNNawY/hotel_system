@@ -5,8 +5,11 @@
           href="{{ url('adminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url('adminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+
     <link rel="stylesheet" type="text/css"
           href="{{ url('adminLTE\plugins\datatables-buttons\css\buttons.bootstrap4.min.css') }}">
+
+
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 @endsection
 
@@ -21,6 +24,7 @@
             padding: 20px;
             text-align: center;
         }
+
         .dt-buttons {
             padding: 10px;
         }
@@ -43,6 +47,7 @@
             </nav>
 
         </section>
+
         <div class="row datatableRow">
             <div class="col-12">
                 <div class="box">
@@ -62,22 +67,33 @@
             </div>
             <!-- /.col -->
         </div>
-        @endsection
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+@endsection
 
-        @section('scriptLinks')
-            {{-- datatables jquery --}}
-            <script src="{{ url('adminLTE\plugins\datatables\jquery.dataTables.min.js') }}"></script>
-            {{-- datatables bootstrap --}}
-            <script src="{{ url('adminLTE\plugins\datatables-bs4\js\dataTables.bootstrap4.min.js') }}"></script>
+@section('scriptLinks')
+    {{-- datatables jquery --}}
+    <script src="{{ url('adminLTE\plugins\datatables\jquery.dataTables.min.js') }}"></script>
+    {{-- datatables bootstrap --}}
+    <script src="{{ url('adminLTE\plugins\datatables-bs4\js\dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ url('adminLTE\plugins\datatables-responsive\js\dataTables.responsive.min.js') }}"></script>
+    <script src="{{ url('adminLTE\plugins\datatables-responsive\js\responsive.bootstrap4.min.js') }}"></script>
 
-            <script src="{{ url('adminLTE\plugins\datatables-responsive\js\dataTables.responsive.min.js') }}"></script>
-            <script src="{{ url('adminLTE\plugins\datatables-responsive\js\responsive.bootstrap4.min.js') }}"></script>
-            <script src="{{ url('adminLTE\plugins\datatables-buttons\js\dataTables.buttons.min.js') }}"></script>
-            <script src="{{ url('') }}/vendor/datatables/buttons.server-side.js"></script>
-            <script src="{{ url('js/reservations.js') }}"></script>
-        @endsection
+    <script src="{{ url('adminLTE\plugins\datatables-buttons\js\dataTables.buttons.min.js') }}"></script>
+    <script src="{{ url('') }}/vendor/datatables/buttons.server-side.js"></script>
+    <script>
+        $(function () {
+            // Avoiding CSRF_TOKEN error in ajax request
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        })
+    </script>
+@endsection
 
-        @push('scripts')>
-    {!! $dataTable->scripts() !!}
-    @endpush
-
+@push('scripts')>
+{!! $dataTable->scripts() !!}
+@endpush
