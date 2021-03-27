@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +31,8 @@
                 @csrf
                 <div class="input-group mb-3">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                           name="name" value="{{ old('name') }}" placeholder="Username" required autocomplete="name" autofocus>
+                           name="name" value="{{ old('name') }}" placeholder="Username" required autocomplete="name"
+                           autofocus>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -48,7 +47,8 @@
 
                 <div class="input-group mb-3">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                           name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email" autofocus>
+                           name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email"
+                           autofocus>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -62,26 +62,52 @@
                 </div>
 
                 <div class="input-group mb-3">
-
                     <select name="country" id="country" class="form-control">
                         <option value="" class="text-muted">Select a country</option>
                         @foreach($countries as $country)
                             <option value="{{ $country['name'] }}">{{$country['name']}}</option>
                         @endforeach
                     </select>
-                        <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <span class="fas fa-globe"></span>
-                                                </div>
-                                            </div>
-{{--                    <input id="country" type="text" class="form-control @error('country') is-invalid @enderror"--}}
-{{--                           name="country" value="{{ old('country') }}" placeholder="Country" required autocomplete="email" autofocus>--}}
-{{--                    <div class="input-group-append">--}}
-{{--                        <div class="input-group-text">--}}
-{{--                            <span class="fas fa-envelope"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-                    @error('email')
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-globe"></span>
+                        </div>
+                    </div>
+                    @error('country')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+
+                <div class="input-group mb-3">
+                    <input id="text" type="text" class="form-control @error('mobile') is-invalid @enderror"
+                           name="mobile" value="{{ old('mobile') }}" placeholder="Mobile" required autocomplete="mobile"
+                           autofocus>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-phone"></span>
+                        </div>
+                    </div>
+                    @error('mobile')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+
+                <div class="input-group mb-3">
+                    <input id="national_id" type="text" class="form-control @error('national_id') is-invalid @enderror"
+                           name="national_id" value="{{ old('national_id') }}" placeholder="National ID" required autocomplete="national_id"
+                           autofocus>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-id-card"></span>
+                        </div>
+                    </div>
+                    @error('national_id')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -106,7 +132,7 @@
                 {{-- confirm password --}}
                 <div class="input-group mb-3">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                          placeholder="Confirm password" required autocomplete="new-password">
+                           placeholder="Confirm password" required autocomplete="new-password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

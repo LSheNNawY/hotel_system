@@ -29,7 +29,6 @@ class UserController extends Controller
             'mobile' => 'required|regex:/(01)[0-9]{9}/|unique:users,mobile,',
             'country' => 'required',
             'password' => 'min:6'
-
         ];
 
         if ($request->hasFile('avatar')) {

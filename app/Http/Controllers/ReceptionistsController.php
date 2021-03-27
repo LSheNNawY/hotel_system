@@ -147,7 +147,11 @@ class ReceptionistsController extends Controller
                 return response('success');
             }
         }
+    }
 
+    
+    function UnApprovedClients(){
+        return "yes";
     }
 
 }
