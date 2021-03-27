@@ -212,7 +212,7 @@
 
 
         <div class="row datatableRow">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">{{ $title }}</h3>
@@ -220,7 +220,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         {!! $dataTable->table([
-                            'class' => 'datatable table table-bordered table-hover',
+                            'class' => 'datatable table table-bordered table-hover w-100',
                             ])
                         !!}
                     </div>

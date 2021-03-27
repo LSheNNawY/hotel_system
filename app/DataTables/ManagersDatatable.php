@@ -3,10 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\User;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class ManagersDatatable extends DataTable
@@ -24,7 +21,7 @@ class ManagersDatatable extends DataTable
             ->addColumn('Actions', 'admin.Managers.actions')
             ->addColumn('avatar', function ($user) {
                 $url = asset("storage/images/$user->avatar");
-                return '<img src=' . $url . ' border="0" width="100" height="100" class="img-rounded" align="center" />';
+                return '<img src=' . $url . ' border="0" width="100" height="100" class="imges-rounded" align="center" />';
             })
             ->editColumn('approved', function ($user) {
                 return $user->approved ? '<span class="badge badge-primary">Approved</span>'
@@ -98,11 +95,11 @@ class ManagersDatatable extends DataTable
                 'data' => 'national_id',
                 'title' => 'National Id'
             ],
-            [
-                'name' => 'avatar',
-                'data' => 'avatar',
-                'title' => 'Avatar'
-            ],
+//            [
+//                'name' => 'avatar',
+//                'data' => 'avatar',
+//                'title' => 'Avatar'
+//            ],
             [
                 'name' => 'mobile',
                 'data' => 'mobile',
@@ -113,22 +110,22 @@ class ManagersDatatable extends DataTable
                 'data' => 'country',
                 'title' => 'Country'
             ],
-            [
-                'name' => 'gender',
-                'data' => 'gender',
-                'title' => 'Gender'
-            ],
-            [
-                'name' => 'approved',
-                'data' => 'approved',
-                'title' => 'Approved'
-            ],
-            [
-                'name' => 'approved_by',
-                'data' => 'admin.name',
-                'title' => 'Approved By',
-                'defaultContent' => '-'
-            ],
+//            [
+//                'name' => 'gender',
+//                'data' => 'gender',
+//                'title' => 'Gender'
+//            ],
+//            [
+//                'name' => 'approved',
+//                'data' => 'approved',
+//                'title' => 'Approved'
+//            ],
+//            [
+//                'name' => 'approved_by',
+//                'data' => 'admin.name',
+//                'title' => 'Approved By',
+//                'defaultContent' => '-'
+//            ],
             Column::make('Actions'),
 
         ];

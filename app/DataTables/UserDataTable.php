@@ -22,8 +22,9 @@ class UserDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('Actions', 'admin.users.actions')
-            ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar");
-                return '<img src='.$url.' border="0" width="100" class="img-rounded" align="center" />'; })
+            ->addColumn('avatar', function ($user) {
+                $url=asset("storage/images/$user->avatar");
+                return '<img src='.$url.' border="0" width="100" class="imges-rounded" align="center" />'; })
             ->editColumn('approved', function ($user) {
                 return $user->approved ? '<span class="badge badge-primary">Approved</span>'
                     : '<span class="badge badge-danger">Un Approved</span>';
@@ -54,12 +55,22 @@ class UserDataTable extends DataTable
      */
     public function html()
     {
-        return $this->builder()
+        $builder = $this->builder()
                     ->setTableId('Datatable')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->orderBy(1);
 
+        if (auth()->user()->hasRole('admin|manager')) {
+            $builder->dom('Blfrtip')
+                ->buttons([
+                    ['extend' => 'print', 'className' => 'btn btn-sm btn-secondary mr-1', 'text' => '<i class="fa fa-print"></i> Print'],
+                    ['extend' => 'excel', 'className' => 'btn btn-sm btn-success mr-1' , 'text' => '<i class="fa fa-file-excel"></i> Excel'],
+                    ['extend' => 'reload', 'className' => 'btn btn-sm btn-info mr-1', 'text' => '<i class="fa fa-sync-alt"></i> Reload'],
+                ]);
+        }
+
+        return $builder;
     }
 
     /**

@@ -39,7 +39,8 @@ $(function () {
         })
     })
 
-    $(document).on('click', '#newBtn', function () {
+/**
+    $(document).on('click', '.newUserBtn', function () {
         $('#newModal').modal('show');
     })
 
@@ -97,6 +98,7 @@ $(function () {
         })
     })
 
+*/
 
     // show edit modal
  $(document).on('click', '.updateBtn', function (e) {
@@ -190,6 +192,18 @@ $(document).on('click', '#confirmEdit', function (e) {
 
 })
 
+//  Approve user
+   $(document).on('click', '.userApproveBtn', function(e) {
+       const url = $(this).data('updateurl');
+       const datatableId = $(this).data('datatable');
+       $.ajax({
+           url,
+           method: 'PUT'
+        }).then(function (data) {
+           console.log(data)
+           $(datatableId).DataTable().ajax.reload();
+       })
+   });
 
 
 });

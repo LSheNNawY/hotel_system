@@ -36,6 +36,7 @@ Route::prefix('/admin/')
         Route::resource('receptionists', ReceptionistsController::class);
        // manager crud
         Route::resource('managers', ManagersController::class);
+        // user crud
         Route::resource('users', UserController::class);
         // rooms crud
         Route::resource('rooms', RoomsController::class);

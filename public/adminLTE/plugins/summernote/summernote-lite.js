@@ -1,14 +1,14 @@
 /*!
- * 
+ *
  * Super simple wysiwyg editor v0.8.16
  * https://summernote.org
- * 
- * 
+ *
+ *
  * Copyright 2013- Alan Hong. and other contributors
  * summernote may be freely distributed under the MIT license.
- * 
+ *
  * Date: 2020-02-19T09:12Z
- * 
+ *
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -992,7 +992,7 @@ function isElement(node) {
   return node && node.nodeType === 1;
 }
 /**
- * ex) br, col, embed, hr, img, input, ...
+ * ex) br, col, embed, hr, imges, input, ...
  * @see http://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
  */
 
@@ -3557,7 +3557,7 @@ function readFileAsDataURL(file) {
 
 function createImage(url) {
   return external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.Deferred(function (deferred) {
-    var $img = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<img>');
+    var $img = external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default()('<imges>');
     $img.one('load', function () {
       $img.off('error abort');
       deferred.resolve($img);
@@ -5382,7 +5382,7 @@ function () {
       rng.insertNode(_this.table.createTable(dimension[0], dimension[1], _this.options));
     });
     /**
-     * remove media object and Figure Elements if media object is img with Figure.
+     * remove media object and Figure Elements if media object is imges with Figure.
      */
 
     this.removeMedia = this.wrapCommand(function () {
@@ -6219,7 +6219,7 @@ function () {
         var item = clipboardData.items.length > 1 ? clipboardData.items[1] : lists.head(clipboardData.items);
 
         if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
-          // paste img file
+          // paste imges file
           this.context.invoke('editor.insertImagesOrCallback', [item.getAsFile()]);
           event.preventDefault();
         } else if (item.kind === 'string') {
