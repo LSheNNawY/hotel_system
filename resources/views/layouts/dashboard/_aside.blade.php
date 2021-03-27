@@ -70,6 +70,32 @@
                 </li>
               @endif  
 
+              @if(auth()->user()->hasRole('manager'))
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('manager.managers.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                        <p>Managers</p>
+                        </a>
+                </li>
+
+              
+
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('manager.floors.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>Floors</p>
+                    </a>
+                </li>
+                <!-- Rooms links -->
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('manager.rooms.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-bed"></i>
+                        <p>Rooms</p>
+                    </a>
+                </li>
+              
+              @endif  
+
               @if(auth()->user()->hasRole('receptionist'))
                 <li class="nav-item has-treeview">
                     <a href="{{ route('receptionist.clients.index') }}" class="nav-link">
