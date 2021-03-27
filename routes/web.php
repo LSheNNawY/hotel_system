@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientReservationController;
 use App\Http\Controllers\FloorsController;
 use App\Http\Controllers\manager\ManagersFloorsController;
 use App\Http\Controllers\ReservationController;
@@ -28,6 +29,17 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 // Route::get('/admin/users', [UserController::class, 'index'])->name('users');
 
 // Route::get('/admin/users', [UserController::class, 'index'])->name('users');
+
+//Route::prefix('/client/')
+//->name('client')->middleware(['role:client', 'auth'])->group(function(){
+//    Route::resource('clients', ClientReservationController::class);
+//    });
+
+Route::middleware(['role:user', 'auth'])->group(function(){
+    Route::resource('clients', ClientReservationController::class);
+    Route::get('/available/rooms', [ClientReservationController::class, 'showAvailableRooms'])->name('available.rooms');
+    Route::get('/reservations/rooms/{id}', [ClientReservationController::class, 'makeReservation'])->name('make.reservation');
+});
 
 Route::prefix('/admin/')
     ->name('admin.')
