@@ -17,13 +17,11 @@
         .datatableRow > div {
             margin: auto;
         }
-
         .datatableRow .box {
             background-color: #FFFFFF;
             padding: 20px;
             text-align: center;
         }
-
         .dt-buttons {
             padding: 10px;
         }
@@ -47,29 +45,29 @@
 
         </section>
         <!-- New admin Modal -->
-        <div class="modal fade" id="newModal" data-datatable="#Datatable" tabindex="-1" role="dialog"
+        <div class="modal fade" id="newModal"  data-datatable="#Datatable" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="border-radius: 4px">
                     <div class="modal-body" style="padding:0">
                         <div class="box box-info">
                             <div class="box-header with-border">
-                                <h3 class="box-title text-center mb-3">New Manager.</h3>
+                                <h3 class="box-title text-center mb-3">New Receptionist.</h3>
                             </div>
 
                             <ul class="error_msgs_alert" id="new_error_msgs_alert">
 
                             </ul>
-                            <!-- /.box-header -->
+                        <!-- /.box-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.managers.store') }}" data-datatable="#Datatable"
-                                  style="padding: 5px 10px 30px" enctype='multipart/form-data' id="newForm">
+                            <form  action="{{ route('admin.receptionists.store') }}" data-datatable="#Datatable"
+                                  style="padding: 5px 10px 30px" enctype='multipart/form-data' id="newForm" >
                                 <div class="box-body">
 
                                     <div class="form-group">
                                         <label for="name">Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
-                                               placeholder="Name" required>
+                                               placeholder="Name"  required>
                                     </div>
 
                                     <div class="form-group">
@@ -129,7 +127,7 @@
             </div>
         </div>
 
-        <!-- Edit manager Modal -->
+        <!-- Edit receptionist Modal -->
         <div class="modal fade" id="editModal" data-datatable="#Datatable" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -137,7 +135,7 @@
                     <div class="modal-body" style="padding:0">
                         <div class="box box-info">
                             <div class="box-header with-border">
-                                <h3 class="box-title text-center mb-3">Edit Manager.</h3>
+                                <h3 class="box-title text-center mb-3">Edit Receptionist.</h3>
                             </div>
 
                             <ul class="error_msgs_alert" id="edit_error_msgs_alert">
@@ -145,62 +143,63 @@
                             </ul>
                             <!-- /.box-header -->
                             <!-- form start -->
-                            <form action="" data-datatable="#Datatable" id="editForm"
+                            <form data-datatable="#Datatable" id="editForm"
                                   style="padding: 5px 10px 30px">
-                                <div class="box-body">
+                                  <div class="box-body">
 
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="editName" name="name"
-                                               placeholder="Name" required>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="editName" name="name"
+                                                placeholder="Name"  required>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="editEmail" name="email"
-                                               placeholder="Email" required>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="editEmail" name="email"
+                                                placeholder="Email" required>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="editPassword" name="password"
-                                               placeholder="Password" required>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="editPassword" name="password"
+                                                placeholder="Password" required>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="national_id">National_ID</label>
-                                        <input type="text" class="form-control" id="editNational_id" name="national_id"
-                                               placeholder="National_id" required>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="national_id">National_ID</label>
+                                            <input type="text" class="form-control" id="editNational_id" name="national_id"
+                                                placeholder="National_id" required>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="avatar">Img</label>
-                                        <input type="file" class="form-control-file" id="editAvatar" name="avatar"
-                                               placeholder="Img" required>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="avatar">Img</label>
+                                            <input type="file" class="form-control-file" id="editAvatar" name="avatar"
+                                                placeholder="Img" required>
+                                            <span id="store_img"></span>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="mobile">Mobile</label>
-                                        <input type="text" class="form-control" id="editMobile" name="mobile"
-                                               placeholder="Mobile" required>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="mobile">Mobile</label>
+                                            <input type="text" class="form-control" id="editMobile" name="mobile"
+                                                placeholder="Mobile" required>
+                                        </div>
 
 
-                                    <div class="form-group">
-                                        <label for="mobile">Country</label>
-                                        <input type="text" class="form-control" id="editCountry" name="country"
-                                               placeholder="country" required>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="mobile">Country</label>
+                                            <input type="text" class="form-control" id="editCountry" name="country"
+                                                placeholder="country" required>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="gender" class="form-label d-block">Gender</label>
-                                        <input type="radio" id="malee" name="gender" value="male">
-                                        <label for="malee">Male</label><br>
-                                        <input type="radio" id="femalee" name="gender" value="female">
-                                        <label for="femalee">Female</label><br>
-                                    </div>
-                                </div>
-                                <!-- /.box-body -->
+                                        <div class="form-group">
+                                            <label for="gender" class="form-label d-block">Gender</label>
+                                            <input type="radio" id="malee" name="gender" value="male">
+                                            <label for="malee">Male</label><br>
+                                            <input type="radio" id="femalee" name="gender" value="female">
+                                            <label for="femalee">Female</label><br>
+                                        </div>
+                                        </div>
+<!-- /.box-body -->
                             </form>
                         </div>
                     </div>
@@ -212,9 +211,8 @@
             </div>
         </div>
 
-
         <div class="row datatableRow">
-            <div class="col-12">
+            <div class="col-12 container">
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">{{ $title }}</h3>
@@ -222,7 +220,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         {!! $dataTable->table([
-                            'class' => 'datatable table table-bordered table-hover w-100',
+                            'class' => 'datatable table table-bordered table-hover',
                             ])
                         !!}
                     </div>
@@ -249,7 +247,7 @@
     <script src="{{ url('adminLTE\plugins\datatables-buttons\js\dataTables.buttons.min.js') }}"></script>
     <script src="{{ url('') }}/vendor/datatables/buttons.server-side.js"></script>
 
-    <script src="{{ url('js/manager.js') }}"></script>
+    <script src="{{ url('js/receptionist.js') }}"></script>
 @endsection
 
 @push('scripts')>

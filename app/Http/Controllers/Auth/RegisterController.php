@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Rinvex\Country\Country;
 
 class RegisterController extends Controller
 {
@@ -52,6 +53,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'country' => ['required', 'string'],
+            'mobile' => ['required' ,'regex:/(01)[0-9]{9}/','unique:users'],
+            'national_id' => ['required', 'digits_between:10,17', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
@@ -64,10 +68,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'country' => $data['country'],
+            'mobile' => $data['mobile'],
+            'national_id' => $data['national_id'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // assign role to user
+        $user->assignRole('user');
+
+        return $user;
+    }
+
+    public function showRegistrationForm()
+    {
+        $countries = countries();
+        return view("auth.register", compact("countries"));
     }
 }

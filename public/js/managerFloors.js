@@ -6,9 +6,11 @@ $(function () {
         }
     });
 
-    $(document).on('click', '.deleteFloorBtn', function (e) {
+    $(document).on('click', '.deleteManagerFloorBtn', function (e) {
         const url = $(this).data('url');
         const datatableId = $(this).data('datatable');
+
+        console.log('clicked');
 
         Swal.fire({
             title: 'Are you sure?',
@@ -106,7 +108,7 @@ $(function () {
     })
 
     // show edit floor modal
-    $(document).on('click', '.updateBtn', function (e) {
+    $(document).on('click', '.updateManagerBtn', function (e) {
         const editUrl = $(this).data('url');
         const updateUrl = $(this).data('updateurl');
         const datatableId = $(this).data('datatable');
@@ -137,6 +139,7 @@ $(function () {
 
             data = {name}
 
+
         let ErrorMsgAlert = $("#edit_error_msgs_alert");
 
         $.ajax({
@@ -154,10 +157,11 @@ $(function () {
                     })
                 },
                 200: function () {
+                    $(datatable).DataTable().ajax.reload();
                     ErrorMsgAlert.html('');
                     form[0].reset();
                     $('#editFloorModal').modal('hide')
-                    $(datatable).DataTable().ajax.reload();
+
 
                     setTimeout(function () {
                         Swal.fire({
@@ -165,7 +169,7 @@ $(function () {
                             text: "Floor updated successfully",
                             confirmButtonColor: '#28a745',
                         })
-                    }, 500);
+                    }, 500)
                 },
                 400: function (response) {
                     // check if there are error msgs.
