@@ -29,7 +29,6 @@ class UserController extends Controller
             'mobile' => 'required|regex:/(01)[0-9]{9}/|unique:users,mobile,',
             'country' => 'required',
             'password' => 'min:6'
-
         ];
 
         if ($request->hasFile('avatar')) {
@@ -83,8 +82,9 @@ class UserController extends Controller
     {
         if (\request()->ajax()) {
             $user = User::find($id);
-            if ($user)
+            if ($user) {
                 return \response()->json($user);
+            }
         }
     }
 
@@ -135,7 +135,4 @@ class UserController extends Controller
 //          return response()->json(array('success' => true), 200);
 //       } return  response()->json(array('success' => false), 400);
     }
-
-
 }
-

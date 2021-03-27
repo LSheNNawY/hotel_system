@@ -196,11 +196,11 @@ $(document).on('click', '#confirmEdit', function (e) {
    $(document).on('click', '.userApproveBtn', function(e) {
        const url = $(this).data('updateurl');
        const datatableId = $(this).data('datatable');
+       console.log(datatableId);
        $.ajax({
            url,
            method: 'PUT'
         }).then(function (data) {
-           console.log(data)
            $(datatableId).DataTable().ajax.reload();
        })
    });

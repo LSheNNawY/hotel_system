@@ -12,6 +12,8 @@ use App\Http\Controllers\ManagersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\receptionist\ClientController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +69,22 @@ Route::prefix('/manager/')
 
 
 });
+Route::prefix('/receptionist/')
+    ->name('receptionist.')
+    ->middleware(['role:receptionist', 'auth'])
+    ->group(function () {
+        Route::get("clients/approved", [ClientController::class, 'show'])->name('clients.approved');
+});
+
+Route::prefix('/receptionist/')
+    ->name('receptionist.')
+    ->middleware(['role:receptionist', 'auth'])
+    ->group(function () {
+        Route::resource('clients', ClientController::class);
+        // Route::get("clients/approved", [ClientController::class, 'show'])->name('clients.approved');
+});
+
+
 
 
 

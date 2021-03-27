@@ -1,7 +1,3 @@
-{{--<a class="btn btn-xs btn-warning updateBtn" title="update" value="{{ $id }}" data-url="{{ route('admin.receptionists.edit', $id) }}" data-updateUrl="{{ route('admin.receptionists.update', $id) }}" data-datatable="#Datatable">--}}
-{{--    <i class="fa fa-edit"></i>--}}
-{{--</a>--}}
-
 @if($deleted_at == null)
     <a class="btn btn-xs btn-outline-warning banBtn" title="Ban"
        data-datatable="#Datatable" data-url="{{ route('admin.receptionists.update', $id) }}">
