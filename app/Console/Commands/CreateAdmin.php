@@ -39,11 +39,13 @@ class CreateAdmin extends Command
      */
     public function handle(User $user)
     {
-        $email = $this->option("name");
+        $name = $this->option("name");
+        $email = $name.'@admin.com';
         $password = $this->option("password");
 
-        $user->name = $email;
+        $user->name = $name;
         $user->email = $email;
+        $user->approved = true;
         $user->password = Hash::make($password);
 
         $user->save();

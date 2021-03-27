@@ -30,7 +30,7 @@ class UserDataTable extends DataTable
             })    
            
         
-            ->rawColumns(['approved','avatar','Actions',]);
+            ->rawColumns(['approved','avatar','Actions']);
 
     }
 

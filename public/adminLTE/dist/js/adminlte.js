@@ -1759,7 +1759,7 @@
         var toast_header = $('<div class="toast-header">');
 
         if (this._config.image != null) {
-          var toast_image = $('<img />').addClass('rounded mr-2').attr('src', this._config.image).attr('alt', this._config.imageAlt);
+          var toast_image = $('<imges />').addClass('rounded mr-2').attr('src', this._config.image).attr('alt', this._config.imageAlt);
 
           if (this._config.imageHeight != null) {
             toast_image.height(this._config.imageHeight).width('auto');

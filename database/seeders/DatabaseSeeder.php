@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RolesSeeder::class,
             FloorsSeeder::class,
-            RoomsSeeder::class
+            RoomsSeeder::class,
+//            ReceptionistSeeder::class
         ]);
     }
 }

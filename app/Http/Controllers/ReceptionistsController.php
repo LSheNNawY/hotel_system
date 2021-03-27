@@ -2,34 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications\UserApprovalNotify;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Validator;
-use App\DataTables\UserDataTable;
-use App\Models\User;
-
-
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+use App\Models\User;
+
+use App\DataTables\ReceptionistsDatatable;
+
+use Illuminate\Support\Facades\Validator;
+use phpDocumentor\Reflection\Types\Null_;
+
+
+class ReceptionistsController extends Controller
 {
-    public function index(UserDataTable $dataTable)
+    public function index(ReceptionistsDatatable $dataTable)
     {
-        return $dataTable->render('admin.users.index', ['title' => 'Users']);
+        return $dataTable->render('admin.receptionists.index', ['title' => 'Receptionists']);
     }
 
+    public function create()
+    {
+
+    }
 
     public function store(Request $request)
     {
         $rules = [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,',
-            'national_id' => 'required|digits_between:10,17|unique:users,national_id,',
+            'email' => 'required|email|unique:users',
+            'national_id' => 'required|required|digits_between:10,17|unique:users',
             'avatar' => 'image|mimes:jpeg,jpg|max:1999',
-            'mobile' => 'required|regex:/(01)[0-9]{9}/|unique:users,mobile,',
+            'mobile' => 'required|regex:/(01)[0-9]{9}/|unique:users',
             'country' => 'required',
-            'password' => 'min:6'
-
+            'password' => 'min:6',
         ];
 
         if ($request->hasFile('avatar')) {
@@ -57,57 +61,38 @@ class UserController extends Controller
             'mobile' => $request->mobile,
             'gender' => $request->gender,
             'approved' => True,
-            'approved_by' => auth()->user()->id,
+            'approved_by' => auth()->user()->id
         ]);
-
         if ($user->exists()) {
-            $user->assignRole('user');
+            $user->assignRole('receptionist');
             return response()->json(array('success' => true), 200);
         }
         return response()->json(array('success' => false), 400);
 
     }
 
-    public function destroy($id)
-    {
-
-        if (request()->ajax()) {
-            $user = user::find($id);
-            if ($user->delete()) {
-                return response('success');
-            }
-        }
-    }
-
     public function edit($id)
     {
         if (\request()->ajax()) {
-            $user = User::find($id);
-            if ($user) {
-                return \response()->json($user);
-            }
+            $receptionist = User::find($id);
+            if ($receptionist)
+                return \response()->json($receptionist);
         }
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-
         if ($request->ajax()) {
-            $user->update([
-                'approved' => true,
-                'approved_by' => auth()->user()->id
-            ]);
-
-            // send message to user after approval
-            Notification::route('mail', $user->email)
-                    ->notify(new UserApprovalNotify($user));
+            if ($request->status == "ban")
+                User::find($id)->delete();
+            else
+                User::withTrashed()->whereId($id)->restore();
 
             return \response('success');
         }
 
-//        $user = User::find($id);
-//
-//        // validation
+
+        // validation
 //        $rules = [
 //            'name' => 'required',
 //            'email'=> 'required|email|unique:users,email,' .$id,
@@ -119,9 +104,14 @@ class UserController extends Controller
 //
 //        ];
 //
+//        if($request->hasFile('avatar')){
+//            $file=$request->file('avatar');
+//            $ext=$file->getClientOriginalExtension();
+//            $filename="imges" . "_" . time() . "." . $ext;
+//            $file->storeAs('public/images',$filename);
+//        }
+//
 //        $validator = Validator::make($request->all(), $rules);
-//
-//
 //
 //        if ($validator->fails()) {
 //
@@ -131,9 +121,34 @@ class UserController extends Controller
 //            ], 400);
 //        }
 //
+//        $receptionist = User::find($id);
+//        // $receptionist->name= $request->name;
+//        // $receptionist->email= $request->email;
+//        // $receptionist->national_id = $request->national_id;
+//        // $receptionist->password= $request->password;
+//        // $receptionist->avatar= $filename;
+//        // $receptionist->country= $request->country;
+//        // $receptionist->mobile= $request->mobile;
+//        // $receptionist->gender= $request->gender;
+//        // $receptionist->approved= True;
+//        // $receptionist->approved_by = auth()->user()->id;
 //
-//       if($user->update($request->all())){
+//       if($receptionist->update($request->all())){
 //          return response()->json(array('success' => true), 200);
 //       } return  response()->json(array('success' => false), 400);
     }
+
+
+    public function destroy($id)
+    {
+        if (request()->ajax()) {
+            $user = user::find($id);
+            if ($user->forceDelete()) {
+                return response('success');
+            }
+        }
+
+    }
+
 }
+

@@ -3,10 +3,13 @@
 namespace App\DataTables;
 
 use App\Models\User;
+use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\Html\Editor\Editor;
+use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ManagersDatatable extends DataTable
+class ReceptionistsDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,31 +21,40 @@ class ManagersDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('Actions', 'admin.Managers.actions')
-            ->addColumn('avatar', function ($user) {
-                $url = asset("storage/images/$user->avatar");
-                return '<img src=' . $url . ' border="0" width="100" height="100" class="imges-rounded" align="center" />';
+            ->addColumn('Actions', 'admin.receptionists.actions')
+            ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar");
+                return '<img src='.$url.' border="0" width="100" height="100" class="imges-rounded" align="center" />'; })
+            ->editColumn('deleted_at', function ($user) {
+                return $user->deleted_at == null ? '<span class="badge badge-success">Active</span>'
+                    : '<span class="badge badge-danger">Banned</span>';
             })
             ->editColumn('approved', function ($user) {
-                return $user->approved ? '<span class="badge badge-primary">Approved</span>'
-                    : '<span class="badge badge-danger">Un Approved</span>';
-            })
-            ->rawColumns(['avatar', 'Actions', 'approved']);;
+                    return $user->approved ? '<span class="badge badge-primary">Approved</span>'
+                        : '<span class="badge badge-danger">Un Approved</span>';
+                })
+
+            ->rawColumns(['avatar','Actions','approved', 'deleted_at']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ManagersDatatable $model
+     * @param \App\Models\ReceptionistsDatatable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(User $model)
     {
+
+        // $users = User::with(['roles' => function($q){
+        //     $q->where('name', 'receptionist');
+        // }])->get()
+
         return $model->newQuery()
             ->with('admin')
             ->whereHas('roles', function ($q) {
-                $q->where('id', '2');
+                $q->where('id', '3');
             })
+            ->withTrashed()
             ->select('users.*');
     }
 
@@ -53,19 +65,19 @@ class ManagersDatatable extends DataTable
      */
     public function html()
     {
-        $builder =  $this->builder()
-            ->setTableId('Datatable')
-            ->columns($this->getColumns())
-            ->minifiedAjax()
-            ->orderBy(1);
+        $builder = $this->builder()
+                    ->setTableId('Datatable')
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    ->orderBy(1);
 
-        if (auth()->user()->hasRole('admin')) {
+        if (auth()->user()->hasRole('admin|manager')) {
             $builder->dom('Blfrtip')
                 ->buttons([
                     ['extend' => 'print', 'className' => 'btn btn-sm btn-secondary mr-1', 'text' => '<i class="fa fa-print"></i> Print'],
                     ['extend' => 'excel', 'className' => 'btn btn-sm btn-success mr-1' , 'text' => '<i class="fa fa-file-excel"></i> Excel'],
                     ['extend' => 'reload', 'className' => 'btn btn-sm btn-info mr-1', 'text' => '<i class="fa fa-sync-alt"></i> Reload'],
-                    ['text' => '<i class="fa fa-plus"></i> New Manager', 'className' => 'btn btn-sm btn-success newManagerBtn'],
+                    ['text' => '<i class="fa fa-plus"></i> New Receptionist', 'className' => 'btn btn-sm btn-success newReceptionistBtn'],
                 ]);
         }
 
@@ -110,11 +122,16 @@ class ManagersDatatable extends DataTable
                 'data' => 'country',
                 'title' => 'Country'
             ],
-//            [
-//                'name' => 'gender',
-//                'data' => 'gender',
-//                'title' => 'Gender'
-//            ],
+            [
+                'name' => 'gender',
+                'data' => 'gender',
+                'title' => 'Gender'
+            ],
+            [
+                'name' => 'deleted_at',
+                'data' => 'deleted_at',
+                'title' => 'Status'
+            ],
 //            [
 //                'name' => 'approved',
 //                'data' => 'approved',
@@ -124,7 +141,7 @@ class ManagersDatatable extends DataTable
 //                'name' => 'approved_by',
 //                'data' => 'admin.name',
 //                'title' => 'Approved By',
-//                'defaultContent' => '-'
+//                'defaultContent'=>'-'
 //            ],
             Column::make('Actions'),
 
@@ -138,8 +155,6 @@ class ManagersDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Managers_' . date('YmdHis');
+        return 'Receptionists_' . date('YmdHis');
     }
-
 }
-
