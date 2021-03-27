@@ -25,8 +25,8 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-            
-                
+
+            @if(auth()->user()->hasRole('admin'))
                 <li class="nav-item has-treeview">
                     <a href="{{ route('admin.managers.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-user"></i>
@@ -68,6 +68,31 @@
                         <p>Receptionists</p>
                     </a>
                 </li>
+              @endif  
+
+              @if(auth()->user()->hasRole('receptionist'))
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('receptionist.clients.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                        <p>Manage Clients</p>
+                        </a>
+                </li>
+
+                <!-- Clients links -->
+                <li class="nav-item has-treeview">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>My approved Clients</p>
+                    </a>
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-key"></i>
+                        <p> Clients Reservations</p>
+                    </a>
+                </li>
+              @endif  
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
