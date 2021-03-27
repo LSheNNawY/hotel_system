@@ -23,13 +23,17 @@ class ReceptionistsDatatable extends DataTable
             ->eloquent($query)
             ->addColumn('Actions', 'admin.receptionists.actions')
             ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar");
-                return '<img src='.$url.' border="0" width="100" height="100" class="img-rounded" align="center" />'; })
+                return '<img src='.$url.' border="0" width="100" height="100" class="imges-rounded" align="center" />'; })
+            ->editColumn('deleted_at', function ($user) {
+                return $user->deleted_at == null ? '<span class="badge badge-success">Active</span>'
+                    : '<span class="badge badge-danger">Banned</span>';
+            })
             ->editColumn('approved', function ($user) {
                     return $user->approved ? '<span class="badge badge-primary">Approved</span>'
                         : '<span class="badge badge-danger">Un Approved</span>';
                 })
 
-            ->rawColumns(['avatar','Actions','approved']);
+            ->rawColumns(['avatar','Actions','approved', 'deleted_at']);
     }
 
     /**
@@ -50,6 +54,7 @@ class ReceptionistsDatatable extends DataTable
             ->whereHas('roles', function ($q) {
                 $q->where('id', '3');
             })
+            ->withTrashed()
             ->select('users.*');
     }
 
@@ -102,11 +107,11 @@ class ReceptionistsDatatable extends DataTable
                 'data' => 'national_id',
                 'title' => 'National Id'
             ],
-            [
-                'name' => 'avatar',
-                'data' => 'avatar',
-                'title' => 'Avatar'
-            ],
+//            [
+//                'name' => 'avatar',
+//                'data' => 'avatar',
+//                'title' => 'Avatar'
+//            ],
             [
                 'name' => 'mobile',
                 'data' => 'mobile',
@@ -123,16 +128,21 @@ class ReceptionistsDatatable extends DataTable
                 'title' => 'Gender'
             ],
             [
-                'name' => 'approved',
-                'data' => 'approved',
-                'title' => 'Approved'
+                'name' => 'deleted_at',
+                'data' => 'deleted_at',
+                'title' => 'Status'
             ],
-            [
-                'name' => 'approved_by',
-                'data' => 'admin.name',
-                'title' => 'Approved By',
-                'defaultContent'=>'-'
-            ],
+//            [
+//                'name' => 'approved',
+//                'data' => 'approved',
+//                'title' => 'Approved'
+//            ],
+//            [
+//                'name' => 'approved_by',
+//                'data' => 'admin.name',
+//                'title' => 'Approved By',
+//                'defaultContent'=>'-'
+//            ],
             Column::make('Actions'),
 
         ];

@@ -543,9 +543,9 @@ var Lightbox = (function ($) {
 						img.onload = function () {
 							if (loadingTimeout) clearTimeout(loadingTimeout);
 							loadingTimeout = null;
-							var image = $('<img />');
+							var image = $('<imges />');
 							image.attr('src', img.src);
-							image.addClass('img-fluid');
+							image.addClass('imges-fluid');
 
 							// backward compatibility for bootstrap v3
 							image.css('width', '100%');
