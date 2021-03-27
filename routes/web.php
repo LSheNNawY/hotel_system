@@ -74,6 +74,12 @@ Route::prefix('/manager/')
 
       
 });
+Route::prefix('/receptionist/')
+    ->name('receptionist.')
+    ->middleware(['role:receptionist', 'auth'])
+    ->group(function () {
+        Route::get("clients/approved", [ClientController::class, 'show'])->name('clients.approved');
+});
 
 
 
