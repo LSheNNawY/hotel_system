@@ -23,7 +23,7 @@ class ReceptionistsDatatable extends DataTable
             ->eloquent($query)
             ->addColumn('Actions', 'admin.receptionists.actions')
             ->addColumn('avatar', function ($user) { $url=asset("storage/images/$user->avatar");
-                return '<img src='.$url.' border="0" width="100" height="100" class="img-rounded" align="center" />'; })
+                return '<img src='.$url.' border="0" width="100" height="70" class="img-rounded" align="center" />'; })
             ->editColumn('approved', function ($user) {
                     return $user->approved ? '<span class="badge badge-primary">Approved</span>'
                         : '<span class="badge badge-danger">Un Approved</span>';

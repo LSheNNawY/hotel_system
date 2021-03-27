@@ -64,6 +64,7 @@
 
                 <li class="nav-item has-treeview">
                     <a href="{{ route('admin.receptionists.index') }}" class="nav-link">
+                        <i class=" nav-icon fas fa-user-secret"></i>
                         <p>Receptionists</p>
                     </a>
                 </li>
