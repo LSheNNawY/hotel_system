@@ -27,7 +27,7 @@ class ManagersDatatable extends DataTable
                 return $user->approved ? '<span class="badge badge-primary">Approved</span>'
                     : '<span class="badge badge-danger">Un Approved</span>';
             })
-            ->rawColumns(['avatar', 'Actions', 'approved']);;
+            ->rawColumns(['avatar', 'Actions', 'approved']);
     }
 
     /**
