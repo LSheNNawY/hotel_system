@@ -94,21 +94,7 @@
                 </li>
               @endif  
 
-                <!-- Clients links -->
-                <li class="nav-item has-treeview">
-                    <a href="{{ route('receptionist.clients.approved')}}"  class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>My approved Clients</p>
-                    </a>
-                </li>
-
-                <li class="nav-item has-treeview">
-                    <a class="nav-link">
-                        <i class="nav-icon fas fa-key"></i>
-                        <p> Clients Reservations</p>
-                    </a>
-                </li>
-              @endif  
+              
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
