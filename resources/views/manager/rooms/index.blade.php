@@ -47,7 +47,7 @@
 
         </section>
         <!-- New room Modal -->
-        <div class="modal fade" id="newRoomModal" data-datatable="#roomsDatatable" tabindex="-1" role="dialog"
+        <div class="modal fade" id="newRoomModal" data-datatable="#ManagerRoomsDatatable" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="border-radius: 4px">
@@ -62,7 +62,7 @@
                             </ul>
                         <!-- /.box-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.rooms.store') }}" data-datatable="#roomsDatatable" id="newRoomForm"
+                            <form action="{{ route('manager.rooms.store') }}" data-datatable="#ManagerRoomsDatatable" id="newRoomForm"
                                   style="padding: 5px 10px 30px">
                                 <div class="box-body">
 
@@ -102,7 +102,7 @@
 
 
         <!-- Edit room Modal -->
-        <div class="modal fade" id="editRoomModal" data-datatable="#roomsDatatable" tabindex="-1" role="dialog"
+        <div class="modal fade" id="editRoomModal" data-datatable="#ManagerRoomsDatatable" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="border-radius: 4px">
@@ -117,7 +117,7 @@
                             </ul>
                             <!-- /.box-header -->
                             <!-- form start -->
-                            <form action="" data-datatable="#roomsDatatable" id="editRoomForm"
+                            <form action="" data-datatable="#ManagerRoomsDatatable" id="editRoomForm"
                                   style="padding: 5px 10px 30px">
                                 <div class="box-body">
 

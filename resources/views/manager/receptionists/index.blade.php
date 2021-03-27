@@ -45,7 +45,7 @@
 
         </section>
         <!-- New admin Modal -->
-        <div class="modal fade" id="newModal"  data-datatable="#Datatable" tabindex="-1" role="dialog"
+        <div class="modal fade" id="newModal"  data-datatable="#ManagerDatatable" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="border-radius: 4px">
@@ -60,7 +60,7 @@
                             </ul>
                         <!-- /.box-header -->
                             <!-- form start -->
-                            <form  action="{{ route('admin.receptionists.store') }}" data-datatable="#Datatable"
+                            <form  action="{{ route('manager.receptionists.store') }}" data-datatable="#ManagerDatatable"
                                   style="padding: 5px 10px 30px" enctype='multipart/form-data' id="newForm" >
                                 <div class="box-body">
 
@@ -128,7 +128,7 @@
         </div>
 
         <!-- Edit receptionist Modal -->
-        <div class="modal fade" id="editModal" data-datatable="#Datatable" tabindex="-1" role="dialog"
+        <div class="modal fade" id="editModal" data-datatable="#ManagerDatatable" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="border-radius: 4px">
@@ -143,7 +143,7 @@
                             </ul>
                             <!-- /.box-header -->
                             <!-- form start -->
-                            <form data-datatable="#Datatable" id="editForm"
+                            <form data-datatable="#ManagerDatatable" id="editForm"
                                   style="padding: 5px 10px 30px">
                                   <div class="box-body">
 

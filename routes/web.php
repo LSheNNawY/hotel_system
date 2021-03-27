@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\ClientReservationController;
 use App\Http\Controllers\FloorsController;
 use App\Http\Controllers\manager\ManagersFloorsController;
+use App\Http\Controllers\manager\ManagersRoomsController;
+use App\Http\Controllers\manager\ManagersReceptionistsController;
+use App\Http\Controllers\manager\ManagersManagersController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\ReceptionistsController;
@@ -29,17 +31,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 // Route::get('/admin/users', [UserController::class, 'index'])->name('users');
 
 // Route::get('/admin/users', [UserController::class, 'index'])->name('users');
-
-//Route::prefix('/client/')
-//->name('client')->middleware(['role:client', 'auth'])->group(function(){
-//    Route::resource('clients', ClientReservationController::class);
-//    });
-
-Route::middleware(['role:user', 'auth'])->group(function(){
-    Route::resource('clients', ClientReservationController::class);
-    Route::get('/available/rooms', [ClientReservationController::class, 'showAvailableRooms'])->name('available.rooms');
-    Route::get('/reservations/rooms/{id}', [ClientReservationController::class, 'makeReservation'])->name('make.reservation');
-});
 
 Route::prefix('/admin/')
     ->name('admin.')
@@ -69,10 +60,12 @@ Route::prefix('/manager/')
     ->group(function () {
         // floors crud
         Route::resource('floors', ManagersFloorsController::class);
-        Route::resource('rooms', ManagersFloorsController::class);
+        Route::resource('rooms', ManagersRoomsController::class);
+        Route::resource('receptionists', ManagersReceptionistsController::class);
+        Route::resource('managers', ManagersManagersController::class);
 
 
-      
+
 });
 
 
