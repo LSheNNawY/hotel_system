@@ -13,10 +13,10 @@ class UserController extends Controller
 {
     public function index(UserDataTable $dataTable)
     {
-        $users = User::with(['roles' => function($q){
+        $users = User::with(['roles' => function ($q) {
             $q->where('name', 'user');
-             }])->get();
-           return $dataTable->render('admin.users.index',['title' => 'Users', 'users' => $users]);
+        }])->get();
+        return $dataTable->render('admin.users.index', ['title' => 'Users', 'users' => $users]);
     }
 
 
@@ -33,11 +33,11 @@ class UserController extends Controller
           
         ];
 
-        if($request->hasFile('avatar')){
+        if ($request->hasFile('avatar')) {
             $file=$request->file('avatar');
             $ext=$file->getClientOriginalExtension();
             $filename="img" . "_" . time() . "." . $ext;
-            $file->storeAs('public/images',$filename);
+            $file->storeAs('public/images', $filename);
         }
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -57,23 +57,21 @@ class UserController extends Controller
             'country'  => $request->country,
             'mobile'  => $request->mobile,
             'gender'  => $request->gender,
-            'approved'=>True,
+            'approved'=>true,
             'approved_by'=> auth()->user()->id,
         ]);
 
-       if($user->exists()){
-         $user->assignRole('user');  
-         return response()->json(array('success' => true), 200);
-       }
-       return  response()->json(array('success' => false), 400);
-
+        if ($user->exists()) {
+            $user->assignRole('user');
+            return response()->json(array('success' => true), 200);
+        }
+        return  response()->json(array('success' => false), 400);
     }
 
     public function destroy($id)
-    {   
-
-         if (request()-> ajax()) {
-           $user=user::find($id);
+    {
+        if (request()-> ajax()) {
+            $user=user::find($id);
             if ($user->delete()) {
                 return response('success');
             }
@@ -84,13 +82,13 @@ class UserController extends Controller
     {
         if (\request()->ajax()) {
             $user = User::find($id);
-            if ($user)
+            if ($user) {
                 return \response()->json($user);
+            }
         }
     }
     public function update(Request $request, $id)
-    {   
-        
+    {
         $user = User::find($id);
 
         // validation
@@ -110,7 +108,6 @@ class UserController extends Controller
 
        
         if ($validator->fails()) {
-        
             return \response()->json([
                 'success' => false,
                 'errors' => $validator->getMessageBag()->toArray()
@@ -118,11 +115,9 @@ class UserController extends Controller
         }
 
 
-       if($user->update($request->all())){
-          return response()->json(array('success' => true), 200);
-       } return  response()->json(array('success' => false), 400);      
+        if ($user->update($request->all())) {
+            return response()->json(array('success' => true), 200);
+        }
+        return  response()->json(array('success' => false), 400);
     }
-
-
 }
-

@@ -33,11 +33,7 @@ Route::prefix('/admin/')
     ->group(function () {
         Route::resource('managers', ManagersController::class);
         
-
-        
         Route::resource('users', UserController::class);
-
-
         // rooms crud
         Route::resource('rooms', RoomsController::class);
         // floors crud

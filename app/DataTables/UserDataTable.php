@@ -28,7 +28,10 @@ class UserDataTable extends DataTable
                 return $user->approved ? '<span class="badge badge-primary">Approved</span>'
                     : '<span class="badge badge-danger">Un Approved</span>';
             })    
-            ->rawColumns(['approved','avatar','Actions']);
+           
+        
+            ->rawColumns(['approved','avatar','Actions',]);
+
     }
 
     /**

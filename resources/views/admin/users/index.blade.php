@@ -240,7 +240,6 @@
     <script src="{{ url('adminLTE\plugins\datatables-responsive\js\responsive.bootstrap4.min.js') }}"></script>
 
     <script src="{{ url('js/user.js') }}"></script>
-   
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     
     
