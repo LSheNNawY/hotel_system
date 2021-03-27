@@ -165,7 +165,7 @@ $(function () {
                             text: "Floor updated successfully",
                             confirmButtonColor: '#28a745',
                         })
-                    }, 500)
+                    }, 500);
                 },
                 400: function (response) {
                     // check if there are error msgs.
